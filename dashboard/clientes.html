@@ -316,7 +316,14 @@
                   <h4 class="card-title">Listado de clientes</h4>
                </div>
             </div>
-            <div class="card-body">
+
+            <div class="col-sm-12" id="cargando" style="display: none;">
+              <center>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 200 200"><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin="0"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".8" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin="0.05"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".6" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".1"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".4" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".15"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".2" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".2"></animate></circle></svg>
+              </center>   
+            </div>
+            
+            <div class="card-body" id="tablaDatos" style="display: block;">
                <div class="table-responsive">
                   <table id="datatable" class="table table-striped" data-toggle="data-table">
                      <thead>
@@ -391,7 +398,9 @@
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary" id="actualizarPersona">Actualizar</button>
+                  <button type="button" class="btn btn-primary" id="actualizarPersona">
+                    Actualizar
+                  </button>
               </div>
           </div>
       </div>
@@ -660,7 +669,15 @@
                 window.location.href = "../index.html";
             })
 
+            const cargando = document.getElementById('cargando');
+            const tabla = document.getElementById('tablaDatos');
+            cargando.style.display = 'block';
+            tabla.style.display = 'none';
+
             await listadoDocumentos();
+
+            cargando.style.display = 'none';
+            tabla.style.display = 'block';
         }
 
         async function listadoDocumentos() {
@@ -714,8 +731,24 @@
           return
         }
 
-        await buscarPersona({numeroDocumento, tipoDocumento});
+        document.getElementById('buscarCliente').innerHTML = `
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Buscando...`;
+        document.getElementById('buscarCliente').disabled = true;
         
+        const cargando = document.getElementById('cargando');
+        const tabla = document.getElementById('tablaDatos');
+        cargando.style.display = 'block';
+        tabla.style.display = 'none';
+
+        await buscarPersona({numeroDocumento, tipoDocumento});
+
+        cargando.style.display = 'none';
+        tabla.style.display = 'block';
+
+        document.getElementById('buscarCliente').innerHTML = `
+          Buscar`;
+        document.getElementById('buscarCliente').disabled = false;
 
       });
 
@@ -758,7 +791,9 @@
                   <td>${persona.numeroDocumento}</td>
                   <td> <button class="btn btn-success" data-nombre="${persona.nombre}"  data-apellidos="${persona.apellidos}" 
                     data-idTipoDocumentoIdentidad="${persona.idTipoDocumentoIdentidad}" data-numeroDocumento="${persona.numeroDocumento}"
-                     data-idPersona="${persona.idPersona}" id="editarPersona" data-bs-toggle="modal" data-bs-target="#modalEditarPersona">Editar</button> </td>
+                     data-idPersona="${persona.idPersona}" id="editarPersona" data-bs-toggle="modal" data-bs-target="#modalEditarPersona">
+                     Editar</button> 
+                     </td>
                 </tr>
               `;
             }
@@ -819,7 +854,11 @@
     })
 
     document.getElementById('actualizarPersona').addEventListener('click', async (e) => {
-      e.preventDefault();
+        e.preventDefault();
+        document.getElementById('actualizarPersona').innerHTML = `
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Actualizando...`;
+        document.getElementById('actualizarPersona').disabled = true;
         const idPersona = document.getElementById('idPersona').value;
         const numeroDocumento =  document.getElementById('numDoc').value;
         const nombrePersona = document.getElementById('nombresP').value;
@@ -828,7 +867,7 @@
         const tipo = document.getElementById('tipoSolicitud').value;
         const aceptarActualizarAsociados = document.getElementById('actualizarPedidos').checked;
 
-        actualizarPersona({ 
+        await actualizarPersona({ 
           nombre: nombrePersona,
           apellidos: apellidosPersona,
           idTipoDocumentoIdentidad: idTipoDocumento,
@@ -837,6 +876,10 @@
           pedidosAsociados: aceptarActualizarAsociados ? 1 : 0,
           tipo
         })
+
+        document.getElementById('actualizarPersona').innerHTML = `
+        Actualizar`;
+        document.getElementById('actualizarPersona').disabled = false;
 
     })
 
@@ -881,12 +924,16 @@
           // 2. Refresca los resultados
           document.getElementById('idNumeroDocumento').value = numeroDocumento;
           document.getElementById('idTipoDocumento').value = idTipoDocumentoIdentidad;
+          const cargando = document.getElementById('cargando');
+          const tabla = document.getElementById('tablaDatos');
+          cargando.style.display = 'block';
+          tabla.style.display = 'none';
           await buscarPersona({
             numeroDocumento,
             tipoDocumento: idTipoDocumentoIdentidad
           });
-          
-
+          cargando.style.display = 'none';
+          tabla.style.display = 'block';
 
         } catch (error) {
           console.log("error");

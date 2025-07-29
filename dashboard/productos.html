@@ -322,7 +322,12 @@
                </div>
             </div>
             <div class="card-body">
-               <div class="table-responsive">
+              <div class="col-sm-12" id="cargando" style="display: none;">
+                <center>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 200 200"><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin="0"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".8" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin="0.05"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".6" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".1"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".4" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".15"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".2" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".2"></animate></circle></svg>
+                </center>   
+              </div>
+               <div class="table-responsive" id="tablaDatos" style="display: block;">
                   <table id="datatable" class="table table-striped" data-toggle="data-table">
                      <thead>
                         <tr>
@@ -735,7 +740,15 @@
                 window.location.href = "../index.html";
             })
 
+            const cargando = document.getElementById('cargando');
+            const tabla = document.getElementById('tablaDatos');
+            cargando.style.display = 'block';
+            tabla.style.display = 'none';
+
             await listadoCanalesVenta();
+
+            cargando.style.display = 'none';
+            tabla.style.display = 'block';
         }
 
         async function listadoCanalesVenta() {
@@ -792,7 +805,25 @@
             }
             const idCanalVenta = document.getElementById('validationDefault04').value;
             const idPetitorio = document.getElementById('idConvenios').value;
-            buscarProductos({sku, idPetitorio, idCanalVenta})
+
+            document.getElementById('buscarProductos').innerHTML = `
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Buscando Producto...`;
+            document.getElementById('buscarProductos').disabled = true;
+
+            const cargando = document.getElementById('cargando');
+            const tabla = document.getElementById('tablaDatos');
+            cargando.style.display = 'block';
+            tabla.style.display = 'none';
+
+            await buscarProductos({sku, idPetitorio, idCanalVenta})
+
+            document.getElementById('buscarProductos').innerHTML = `
+              Buscar Producto`;
+            document.getElementById('buscarProductos').disabled = false;
+
+            cargando.style.display = 'none';
+            tabla.style.display = 'block';
 
         })
 
@@ -1009,7 +1040,17 @@
       const idCanalVenta = document.getElementById('idCanalVenta').value;
       const idProducto = document.getElementById('idProducto').value 
 
-      actualizarProducto({
+      document.getElementById('actualizarProducto').innerHTML = `
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Actualizando...`;
+      document.getElementById('actualizarProducto').disabled = true;
+
+      const cargando = document.getElementById('cargando');
+      const tabla = document.getElementById('tablaDatos');
+      cargando.style.display = 'block';
+      tabla.style.display = 'none';
+
+      await actualizarProducto({
         idProducto,
         nombreComercial,
         idCanalVenta: (idCanalVenta != 'null' && idCanalVenta != 'undefined') ? idCanalVenta : null,
@@ -1019,6 +1060,12 @@
         porcentajeDescuento: porcentajeDescuento ?? null,
         montoDescuentoMinimo: montoDescuentoMinimo ?? null
       })
+
+      document.getElementById('actualizarProducto').innerHTML = `
+        Actualizar`;
+      document.getElementById('actualizarProducto').disabled = false;
+       cargando.style.display = 'none';
+      tabla.style.display = 'block';
 
     })
 
@@ -1034,7 +1081,17 @@
       const idCanalVenta = document.getElementById('canalVentaA').value;
       const idProducto = document.getElementById('idProductoA').value 
 
-      actualizarProducto({
+      document.getElementById('registrarProducto').innerHTML = `
+        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+        Registrando...`;
+      document.getElementById('registrarProducto').disabled = true;
+
+      const cargando = document.getElementById('cargando');
+      const tabla = document.getElementById('tablaDatos');
+      cargando.style.display = 'block';
+      tabla.style.display = 'none';
+
+      await actualizarProducto({
         idProducto,
         nombreComercial,
         idCanalVenta: (idCanalVenta != 'null' && idCanalVenta != 'undefined') ? idCanalVenta : null,
@@ -1044,6 +1101,12 @@
         porcentajeDescuento: (porcentajeDescuento && porcentajeDescuento.trim().length > 0) ? porcentajeDescuento : 0,
         montoDescuentoMinimo: (montoDescuentoMinimo && montoDescuentoMinimo.trim().length > 0) ? montoDescuentoMinimo : 0
       })
+
+      document.getElementById('registrarProducto').innerHTML = `
+        Registrar`;
+      document.getElementById('registrarProducto').disabled = false;
+      cargando.style.display = 'none';
+      tabla.style.display = 'block';
 
 
 

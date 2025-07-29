@@ -314,10 +314,12 @@
                   <h4 class="card-title">Listado de Pedidos/Solicitudes</h4>
                </div>
             </div>
-            <div id="loader" style="display:none;">
-              <img src="../assets/images/loader.gif" alt="Loading">
-          </div>
-            <div class="card-body">
+            <div class="col-sm-12" id="cargando" style="display: none;">
+              <center>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 200 200"><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin="0"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".8" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin="0.05"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".6" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".1"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".4" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".15"></animate></circle><circle fill="#3A57E8" stroke="#3A57E8" stroke-width="30" opacity=".2" r="15" cx="35" cy="100"><animate attributeName="cx" calcMode="spline" dur="1.2" values="35;165;165;35;35" keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1" repeatCount="indefinite" begin=".2"></animate></circle></svg>
+              </center>   
+            </div>
+            <div class="card-body" id="tablaDatos" style="display: block;">
                <div class="table-responsive">
                   <table id="datatable" class="table table-striped" data-toggle="data-table">
                      <thead>
@@ -665,13 +667,19 @@
                 localStorage.clear();
                 window.location.href = "../index.html";
             })
-            const loader = document.getElementById('loader');
-            loader.style.display = 'block';
+            
+            const cargando = document.getElementById('cargando');
+            const tabla = document.getElementById('tablaDatos');
+            cargando.style.display = 'block';
+            tabla.style.display = 'none';
+
             await Promise.all([
               listadoPeriodos(),
               listadoDocumentos()
             ])
-            loader.style.display = 'none';
+            
+            cargando.style.display = 'none';
+            tabla.style.display = 'block';
         }
 
         async function listadoPeriodos() {
@@ -780,7 +788,24 @@
               return
             }
 
-            buscarPedidosSolicitud({tipo, numero: numeroDocumento })
+            document.getElementById('buscarPedido').innerHTML = `
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Buscando...`;
+            document.getElementById('buscarPedido').disabled = true;
+
+            const cargando = document.getElementById('cargando');
+            const tabla = document.getElementById('tablaDatos');
+            cargando.style.display = 'block';
+            tabla.style.display = 'none';
+
+            await buscarPedidosSolicitud({tipo, numero: numeroDocumento })
+
+            cargando.style.display = 'none';
+            tabla.style.display = 'block';
+
+            document.getElementById('buscarPedido').innerHTML = `
+              Buscar Pedido/Solicitud`;
+            document.getElementById('buscarPedido').disabled = false;
 
         })
 
@@ -925,7 +950,17 @@
         const idEstadoPedido = document.getElementById('estadosPedido').value;
         const numeroCanal = document.getElementById('numeroCanal').value;
 
-        actualizarPersona({ 
+        document.getElementById('actualizarPersona').innerHTML = `
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Actualizando...`;
+        document.getElementById('actualizarPersona').disabled = true;
+
+        const cargando = document.getElementById('cargando');
+        const tabla = document.getElementById('tablaDatos');
+        cargando.style.display = 'block';
+        tabla.style.display = 'none';
+
+        await actualizarPersona({ 
           id: (id && id != 'undefined' && id != 'null') ? id : null,
           tipo,
           idAfiliadoPeriodo: (idAfiliadoPeriodo && idAfiliadoPeriodo != 'undefined' && idAfiliadoPeriodo != 'null') ? idAfiliadoPeriodo : null,
@@ -937,6 +972,12 @@
           idEstadoPedido: (idEstadoPedido && idEstadoPedido != 'undefined' && idEstadoPedido != 'null') ? idEstadoPedido : null,
           numeroCanal:  (numeroCanal && numeroCanal != 'undefined' && numeroCanal != 'null') ? numeroCanal : null,
         })
+
+        document.getElementById('actualizarPersona').innerHTML = `
+              Actualizar`;
+        document.getElementById('actualizarPersona').disabled = false;
+        cargando.style.display = 'none';
+        tabla.style.display = 'block';
 
     })
 

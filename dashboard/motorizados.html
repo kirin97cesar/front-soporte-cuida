@@ -634,6 +634,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="../config/index.js"></script>
     
     <script>
 
@@ -686,7 +687,7 @@
           try {
               const myHeaders = new Headers();
               myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-              const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/periodos.php', {
+              const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
                 method: 'GET',
                 headers :myHeaders
               });
@@ -738,7 +739,7 @@
         try {
             const myHeaders = new Headers();
             myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-            const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/persona.php', {
+            const response = await fetch(`${API_BASE_URL}public/persona.php`, {
               method: 'GET',
               headers :myHeaders
             });
@@ -792,7 +793,7 @@
           try {
               const myHeaders = new Headers();
               myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-              const response = await fetch(`https://soportes.cooperativasanviator.org.pe/api/public/periodos.php?tipo=${tipo}&numero=${numero}&id=${id}`, {
+              const response = await fetch(`${API_BASE_URL}public/periodos.php?tipo=${tipo}&numero=${numero}&id=${id}`, {
               method: 'GET',
               headers :myHeaders
               });
@@ -911,7 +912,7 @@
 
           const myHeaders = new Headers();
           myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-          const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/periodos.php', {
+          const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
             method: 'GET',
             headers :myHeaders
           });
@@ -956,7 +957,7 @@
     document.getElementById('idSlots').addEventListener('change', async() => {
       const myHeaders = new Headers();
       myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-      const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/periodos.php', {
+      const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
         method: 'GET',
         headers :myHeaders
       });
@@ -1064,7 +1065,7 @@
               idTipoEnvio
             });
 
-            const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/periodos.php', {
+            const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
               method: 'POST',
                 headers: myHeaders,
                 body: raw,

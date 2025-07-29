@@ -692,6 +692,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="../config/index.js"></script>
+
     
     <script>
 
@@ -741,7 +743,7 @@
         try {
             const myHeaders = new Headers();
             myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-            const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/productos.php', {
+            const response = await fetch(`${API_BASE_URL}public/productos.php`, {
             method: 'GET',
             headers :myHeaders
             });
@@ -799,7 +801,7 @@
           try {
               const myHeaders = new Headers();
               myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-              const response = await fetch(`https://soportes.cooperativasanviator.org.pe/api/public/productos.php?sku=${sku}&idPetitorio=${idPetitorio}&idCanalVenta=${idCanalVenta}`, {
+              const response = await fetch(`${API_BASE_URL}public/productos.php?sku=${sku}&idPetitorio=${idPetitorio}&idCanalVenta=${idCanalVenta}`, {
               method: 'GET',
               headers :myHeaders
               });
@@ -1074,7 +1076,7 @@
               montoDescuentoMinimo
             });
 
-            const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/productos.php', {
+            const response = await fetch(`${API_BASE_URL}public/productos.php`, {
               method: 'POST',
                 headers: myHeaders,
                 body: raw,

@@ -314,6 +314,9 @@
                   <h4 class="card-title">Listado de Pedidos/Solicitudes</h4>
                </div>
             </div>
+            <div id="loader" style="display:none;">
+              <img src="../assets/images/loader.gif" alt="Loading">
+          </div>
             <div class="card-body">
                <div class="table-responsive">
                   <table id="datatable" class="table table-striped" data-toggle="data-table">
@@ -329,9 +332,7 @@
                            <th>Opciones</th>
                         </tr>
                      </thead>
-                     <tbody id="bodyProductos">
-                        
-                     </tbody>
+                     <tbody id="bodyProductos"></tbody>
                   </table>
                </div>
             </div>
@@ -341,7 +342,7 @@
 </div>
       </div>
 
-            <div class="modal fade" id="modalEditarPersona" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarPersona" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
@@ -622,6 +623,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="../config/index.js"></script>
+
     
     <script>
 
@@ -662,11 +665,13 @@
                 localStorage.clear();
                 window.location.href = "../index.html";
             })
-
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block';
             await Promise.all([
               listadoPeriodos(),
               listadoDocumentos()
             ])
+            loader.style.display = 'none';
         }
 
         async function listadoPeriodos() {
@@ -674,7 +679,7 @@
           try {
               const myHeaders = new Headers();
               myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-              const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/periodos.php', {
+              const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
                 method: 'GET',
                 headers :myHeaders
               });
@@ -733,7 +738,7 @@
         try {
             const myHeaders = new Headers();
             myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-            const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/persona.php', {
+            const response = await fetch(`${API_BASE_URL}public/persona.php`, {
               method: 'GET',
               headers :myHeaders
             });
@@ -754,6 +759,7 @@
 
 
         } catch (error) {
+          console.log("error", error)
             localStorage.clear();
             // Redirigir, si aplica
             window.location.href = "../index.html";
@@ -787,7 +793,7 @@
           try {
               const myHeaders = new Headers();
               myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-              const response = await fetch(`https://soportes.cooperativasanviator.org.pe/api/public/periodos.php?tipo=${tipo}&numero=${numero}&id=${id}`, {
+              const response = await fetch(`${API_BASE_URL}public/periodos.php?tipo=${tipo}&numero=${numero}&id=${id}`, {
               method: 'GET',
               headers :myHeaders
               });
@@ -965,7 +971,7 @@
               numeroCanal
             });
 
-            const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/periodos.php', {
+            const response = await fetch(`${API_BASE_URL}/public/periodos.php`, {
               method: 'POST',
                 headers: myHeaders,
                 body: raw,

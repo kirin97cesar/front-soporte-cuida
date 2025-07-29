@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CuidaDigital | Administrativo</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../assets/css/core/libs.min.css">
+  <link rel="stylesheet" href="../../assets/css/hope-ui.min.css?v=4.0.0">
+  <link rel="stylesheet" href="../../assets/css/custom.min.css?v=4.0.0">
+  <link rel="stylesheet" href="../../assets/css/dark.min.css">
+  <link rel="stylesheet" href="../../assets/css/customizer.min.css">
+  <link rel="stylesheet" href="../../assets/css/rtl.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <section class="login-content">
+      <div class="row m-0 align-items-center bg-white vh-100">
+        <div class="col-md-6">
+          <div class="row justify-content-center">
+            <div class="col-md-10">
+              <div class="card card-transparent shadow-none d-flex justify-content-center mb-0 auth-card">
+                <div class="card-body">
+                  <div class="logo-main">
+                    <div class="logo-normal">
+                      <!-- Logo SVG omitido para brevedad -->
+                    </div>
+                  </div>
+                  <h4 class="logo-title ms-3">Cuida Salud</h4>
+                  <h2 class="mb-2 text-center">Iniciar Sesión</h2>
+                  <p class="text-center">Administrador de soportes</p>
+                  <form>
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="email" class="form-label">Correo</label>
+                          <input type="email" class="form-control" id="email" placeholder="">
+                          <div class="invalid-feedback">Ingresa un correo válido.</div>
+                        </div>
+                      </div>
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label for="password" class="form-label">Contraseña</label>
+                          <input type="password" class="form-control" id="password" placeholder="">
+                          <div class="invalid-feedback">Ingresa una contraseña.</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                      <button type="submit" id="iniciarSesion" class="btn btn-primary">Vamos</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-md-block d-none bg-primary p-0 vh-100 overflow-hidden">
+          <img src="../../assets/images/auth/01.png" class="img-fluid gradient-main animated-scaleX" alt="images">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- JS -->
+  <script src="../../assets/js/core/libs.min.js"></script>
+  <script src="../../assets/js/core/external.min.js"></script>
+  <script src="../../assets/js/plugins/fslightbox.js"></script>
+  <script src="../../assets/js/plugins/setting.js"></script>
+  <script src="../../assets/js/plugins/form-wizard.js"></script>
+  <script src="../../assets/js/hope-ui.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+
+  <script>
+
+    // Encriptar y guardar
+    function guardarEnLocalStorage(clave, valor, token) {
+      const encriptado = CryptoJS.AES.encrypt(valor, token).toString();
+      localStorage.setItem(clave, encriptado);
+    }
+
+    // Leer y desencriptar
+    function leerDesdeLocalStorage(clave, token) {
+      const cifrado = localStorage.getItem(clave);
+      if (!cifrado) return null;
+
+      try {
+        const bytes = CryptoJS.AES.decrypt(cifrado, token);
+        return bytes.toString(CryptoJS.enc.Utf8);
+      } catch (err) {
+        console.error('Error al desencriptar:', err);
+        return null;
+      }
+    }
+
+    // Validar email
+    function esCorreoValido(correo) {
+      const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regexEmail.test(correo);
+    }
+
+    // Config Toastr
+    toastr.options = {
+      "closeButton": true,
+      "positionClass": "toast-top-right",
+      "timeOut": "3000",
+    };
+
+    // Detectar cambios para limpiar errores visuales
+    document.getElementById('email').addEventListener('input', () => {
+      document.getElementById('email').classList.remove('is-invalid');
+    });
+    document.getElementById('password').addEventListener('input', () => {
+      document.getElementById('password').classList.remove('is-invalid');
+    });
+
+    // Manejo del login
+    document.getElementById('iniciarSesion').addEventListener('click', (e) => {
+      e.preventDefault();
+      let email = document.getElementById('email');
+      let password = document.getElementById('password');
+
+      if (esCorreoValido(email.value) && password.value) {
+        loginUsuario({ email, password });
+      } else {
+        if (!esCorreoValido(email.value) && !password.value) {
+          localStorage.clear();
+          toastr["error"]("Ingresa correo y contraseña!");
+          email.classList.add('is-invalid');
+          password.classList.add('is-invalid');
+        } else if (!esCorreoValido(email.value)) {
+          localStorage.clear();
+          toastr["error"]("Ingresa correo válido!");
+          email.classList.add('is-invalid');
+        } else if (!password.value) {
+          localStorage.clear();   
+          toastr["error"]("Ingresa la contraseña!");
+          password.classList.add('is-invalid');
+        }
+      }
+    });
+
+    async function loginUsuario({ email, password }) {
+      email.classList.remove('is-invalid');
+      password.classList.remove('is-invalid');
+
+      try {
+        const response = await fetch('https://soportes.cooperativasanviator.org.pe/api/public/login.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ usuario: email.value, clave: password.value })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Error en el login');
+        }
+
+        toastr["success"]("Login exitoso!");
+
+        // Guardar token
+        localStorage.setItem('token', data.token);
+
+        guardarEnLocalStorage('user', JSON.stringify({ email: email.value, password: password.value }), data.token);
+
+        // Redirigir, si aplica
+        window.location.href = "dashboard/admin.html";
+
+      } catch (error) {
+        localStorage.clear();
+        toastr["error"]("Usuario inválido!");
+        email.classList.add('is-invalid');
+        password.classList.add('is-invalid');
+        password.value = '';
+      }
+    }
+
+    // Leer sesión guardada
+    function leerSesionGuardada() {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const detalle = leerDesdeLocalStorage('user', token);
+      if (detalle) {
+        const { email, password } = JSON.parse(detalle);
+        document.getElementById('email').value = email;
+        document.getElementById('password').value = password;
+        console.log("🧠 Sesión recordada:", email);
+      }
+    }
+
+    leerSesionGuardada();
+  </script>
+</body>
+</html>

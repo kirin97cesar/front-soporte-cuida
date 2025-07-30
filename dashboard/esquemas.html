@@ -812,6 +812,7 @@
 
           document.getElementById('agregarEsquemaFinal').innerHTML = `
           Actualizar`;
+          productosEscogidos = [];
 
         })
 
@@ -892,6 +893,12 @@
           }
 
         }
+
+        document.getElementById('agregarEsquema').addEventListener('click', async () => {
+          productosEscogidos = [];
+          document.getElementById('bodyProductosEsquema').innerHTML = '';
+          document.getElementById('agregarEsquemaFinal').disabled = true;
+        })
 
         async function cargarDatosIniciales() {
             const informacionUser = leerDesdeLocalStorage('user', localStorage.getItem('token'));

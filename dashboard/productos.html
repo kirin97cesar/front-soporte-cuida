@@ -204,7 +204,7 @@
                     </div>
                 </div>
                 <!--logo End-->
-                
+
                 <h4 class="logo-title">Cuida Salud</h4>
             </a>
             <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
@@ -291,8 +291,8 @@
                   <form>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                          <label class="form-label" for="validationDefault04">Canal de Venta</label>
-                          <select class="form-select" id="validationDefault04" required>
+                          <label class="form-label" for="canalesVentasB">Canal de Venta</label>
+                          <select class="form-select" id="canalesVentasB" required>
                           </select>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -781,13 +781,13 @@
               conveniosTabla += `<option value="${convenio.idPetitorio}">${convenio.idPetitorio} - ${convenio.descripcion} </option>`
             }
 
-            document.getElementById('validationDefault04').innerHTML = canalTabla;
+            document.getElementById('canalesVentasB').innerHTML = canalTabla;
             document.getElementById('idConvenios').innerHTML = conveniosTabla;
             document.getElementById('canalVentaA').innerHTML = canalTabla;
             document.getElementById('idConveniosA').innerHTML = conveniosTabla;
 
    
-            $('#validationDefault04').select2();
+            $('#canalesVentasB').select2();
             $('#idConvenios').select2();
             $('#canalVentaA').select2({
               dropdownParent: $('#modalAgregarProducto')
@@ -819,7 +819,7 @@
               document.getElementById('sku').classList.add('is-invalid');
               return
             }
-            const idCanalVenta = document.getElementById('validationDefault04').value;
+            const idCanalVenta = document.getElementById('canalesVentasB').value;
             const idPetitorio = document.getElementById('idConvenios').value;
 
             document.getElementById('buscarProductos').innerHTML = `
@@ -948,38 +948,39 @@
           document.getElementById('sku').classList.remove('is-invalid');
         })
 
-        document.getElementById('validationDefault04').addEventListener('change', () => {
-          const idCanalVenta = document.getElementById('validationDefault04').value;
-          if(idCanalVenta != null || idCanalVenta != 'null') {
-            document.getElementById('idConvenios').value = 'null';
+
+        $('#canalesVentasB').on('select2:select', function (e) {
+          const valorSeleccionado = $(this).val();
+          if(valorSeleccionado != null || valorSeleccionado != 'null') {
+            $('#idConvenios').val('null').trigger('change');
           }
         });
 
-        document.getElementById('idConvenios').addEventListener('change', () => {
-          const idConvenio = document.getElementById('idConvenios').value;
-          if(idConvenio != null || idConvenio != 'null') {
-            document.getElementById('validationDefault04').value = 'null';
+        $('#idConvenios').on('select2:select', function (e) {
+          const valorSeleccionado = $(this).val();
+          if(valorSeleccionado != null || valorSeleccionado != 'null') {
+            $('#canalesVentasB').val('null').trigger('change');
           }
         });
 
-        document.getElementById('canalVentaA').addEventListener('change', () => {
-          const idCanalVenta = document.getElementById('canalVentaA').value;
-          if(idCanalVenta != null || idCanalVenta != 'null') {
-            document.getElementById('idConveniosA').value = 'null';
+        $('#canalVentaA').on('select2:select', function (e) {
+          const valorSeleccionado = $(this).val();
+          if(valorSeleccionado != null || valorSeleccionado != 'null') {
+            $('#idConveniosA').val('null').trigger('change');
             document.getElementById('porcentajeDescuentoA').disabled = false;
             document.getElementById('montoDescuentoMinimoA').disabled = false;
           }
         });
 
-        document.getElementById('idConveniosA').addEventListener('change', () => {
-          const idConvenio = document.getElementById('idConveniosA').value;
-          if(idConvenio != null || idConvenio != 'null') {
-            document.getElementById('canalVentaA').value = 'null';
+        $('#idConveniosA').on('select2:select', function (e) {
+          const valorSeleccionado = $(this).val();
+          if(valorSeleccionado != null || valorSeleccionado != 'null') {
+            $('#canalVentaA').val('null').trigger('change');
             document.getElementById('porcentajeDescuentoA').disabled = true;
             document.getElementById('montoDescuentoMinimoA').disabled = true;
           }
         });
-
+        
       document.addEventListener('DOMContentLoaded', () => {
         const modalEditar = document.getElementById('modalEditarProducto');
 
@@ -1215,7 +1216,7 @@
 
 
           // 2. Refresca los resultados
-          document.getElementById('validationDefault04').value = idCanalVenta;
+          document.getElementById('canalesVentasB').value = idCanalVenta;
           document.getElementById('idConvenios').value = idPetitorio ?? 'null';
           document.getElementById('sku').value = sku;
 

@@ -7,8 +7,6 @@
       <link rel="icon" type="image/x-icon" href="../favicon.ico">
       <meta name="theme-color" content="#3a57e8">
       <title>Cuida Salud | Principal</title>
-
-      <link href="../assets/css/select2.min.css" rel="stylesheet" />
       
       <!-- Favicon -->
       <link rel="shortcut icon" href="../assets/images/favicon.ico">
@@ -96,7 +94,7 @@
                             <span class="mini-icon">INICIO</span>
                         </a>
                     </li>
-                   <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="../dashboard/admin.html">
                             <i class="icon">
                               <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    
@@ -138,7 +136,6 @@
                         </a>
                     </li>
 
-
                     <li class="nav-item">
                         <a class="nav-link" href="../dashboard/pedidos.html" role="button">
                             <i class="icon">
@@ -173,7 +170,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="../dashboard/agentes.html" role="button">
+                        <a class="nav-link active" aria-current="page" href="../dashboard/agentes.html" role="button">
                             <i class="icon">
                               <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M2.87187 11.5983C1.79887 8.24832 3.05287 4.41932 6.56987 3.28632C8.41987 2.68932 10.4619 3.04132 11.9999 4.19832C13.4549 3.07332 15.5719 2.69332 17.4199 3.28632C20.9369 4.41932 22.1989 8.24832 21.1269 11.5983C19.4569 16.9083 11.9999 20.9983 11.9999 20.9983C11.9999 20.9983 4.59787 16.9703 2.87187 11.5983Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                                    <path d="M16 6.69995C17.07 7.04595 17.826 8.00095 17.917 9.12195" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -181,10 +178,10 @@
                             </i>
                             <span class="item-name">Agentes</span>
                         </a>
-                    </li>     
+                    </li>                                            
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../dashboard/esquemas.html" role="button">
+                        <a class="nav-link" href="../dashboard/esquemas.html" role="button">
                             <i class="icon">
                               <svg class="icon-24" width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                    
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.5317 12.4724C15.5208 16.4604 16.4258 11.8467 18.9656 14.3848C21.4143 16.8328 22.8216 17.3232 19.7192 20.4247C19.3306 20.737 16.8616 24.4943 8.1846 15.8197C-0.493478 7.144 3.26158 4.67244 3.57397 4.28395C6.68387 1.17385 7.16586 2.58938 9.61449 5.03733C12.1544 7.5765 7.54266 8.48441 11.5317 12.4724Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>                               
@@ -304,12 +301,13 @@
         <!--Nav End-->
       </div>
       <div class="conatiner-fluid content-inner mt-n5 py-0">
-  <div class="row">
+
+          <div class="row">
      <div class="col-sm-12">
         <div class="card">
             <div class="card-header d-flex justify-content-between flex-wrap">
                 <div class="header-title">
-                    <h4 class="card-title mb-0">Esquemas</h4>
+                    <h4 class="card-title mb-0">Pedido a asignar Motorizado</h4>
                 </div>
             </div>
             <div class="col-sm-12">
@@ -317,13 +315,13 @@
                   <p>Ingresa los datos a buscar</p>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                          <label class="form-label" for="numeroDocumento">Número documento</label>
-                          <input type="text" class="form-control" id="numeroDocumento"  style="text-transform: uppercase;" required>
+                          <label class="form-label" for="numeroPedido">Número Pedido</label>
+                          <input type="text" class="form-control" id="numeroPedido"  style="text-transform: uppercase;" required>
                           <div class="invalid-feedback">Ingresa un número correcto.</div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" id="buscarEsquema">Buscar Esquema</button>
+                        <button class="btn btn-primary" id="buscarPedido">Buscar Pedido</button>
                     </div>
             </div>
 
@@ -337,7 +335,7 @@
          <div class="card">
             <div class="card-header d-flex justify-content-between">
                <div class="header-title">
-                  <h4 class="card-title">Listado de Esquemas</h4>
+                  <h4 class="card-title">Listado de Pedidos</h4>
                </div>
             </div>
             <div class="col-sm-12" id="cargando" style="display: none;">
@@ -346,18 +344,18 @@
               </center>   
             </div>
             <div class="card-body" id="tablaDatos" style="display: block;">
-              <button type="button" class="btn btn-primary mb-4" id="agregarEsquema" data-bs-toggle="modal" data-bs-target="#modalAgregarEsquema" >Agregar Esquema</button>
                <div class="table-responsive">
                   <table id="datatable" class="table table-striped" data-toggle="data-table">
                      <thead>
                         <tr>
-                          <th>Cliente</th>
-                          <th>Diagnostico</th>
-                          <th>SKU/ Producto</th>
-                          <th>Ud.</th>
-                          <th>Estado</th>
-                          <th>Sugerencia</th>
-                          <th>Opciones</th>
+                           <th>#Id</th>
+                           <th>Número</th>
+                           <th>Nombres</th>
+                           <th>Apellidos</th>
+                           <th>Tipo Documento</th>
+                           <th>Numero documento</th>
+                           <th>Tipo de Periodo</th>
+                           <th>Opciones</th>
                         </tr>
                      </thead>
                      <tbody id="bodyProductos"></tbody>
@@ -370,122 +368,85 @@
 </div>
       </div>
 
-    <div class="modal fade" id="modalEditarEsquema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarPersona" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
-                  <input type="hidden" id="idPacienteDiagnostico">
-                  <input type="hidden" id="idPacienteSeguimiento">
-                  <input type="hidden" id="idPacienteEstado">
-
-                  <h5 class="modal-title" id="exampleModalLabel">Editar Esquema</h5>
+                  <input type="hidden" id="tipoNumero">
+                  <input type="hidden" id="id">
+                  <input type="hidden" id="idCanalVenta">
+                  <input type="hidden" id="idTipoEnvio">
+                  <h5 class="modal-title" id="exampleModalLabel">Editar Pedido</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                   <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label" for="cliente">Cliente</label>
-                          <input type="text" class="form-control" id="cliente" disabled>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label" for="diagnostico">Diagnostico</label>
-                          <input type="text" class="form-control" id="diagnostico" disabled>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label" for="producto">SKUS/ Producto</label>
-                          <input type="text" class="form-control" id="producto" disabled>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label" for="unidades">Unidades</label>
-                          <input type="text" class="form-control" id="unidades" disabled>
-                        </div>
-                         <div class="col-md-12 mb-3">
-                          <label class="form-label" for="idEstadosTratamientos">Estado de Tratamiento</label>
-                          <select class="form-select" id="idEstadosTratamientos" required>
-                          </select>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label" for="sugerencia">Sugerencia</label>
-                          <input type="text" class="form-control" id="sugerencia" disabled>
-                        </div>
-                    </div>
-            </div>
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary" id="actualizarEsquema">Actualizar</button>
-              </div>
-          </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="modalAgregarEsquema" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-
-                  <h5 class="modal-title" id="exampleModalLabel">Agregar Esquema</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <div class="col-sm-12">
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label" for="idCanalVenta">Canal de Venta</label>
-                          <select class="form-select" id="idCanalVenta" required>
-                          </select>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label" for="idDiagnostico">Diagnostico</label>
-                          <select class="form-select" id="idDiagnostico" required>
-                          </select>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                          <label class="form-label" for="idFrecuencia">Frecuencia</label>
-                          <select class="form-select" id="idFrecuencia" required>
-                          </select>
-                        </div>
-                        <hr class="hr-horizontal">
-                        <h5 class="modal-title mb-3 mt-3">Agregar Producto</h5>
                         <div class="col-md-6 mb-3">
-                          <label class="form-label" for="skuProducto">SKUS/ Producto</label>
-                          <input type="text" class="form-control" id="skuProducto">
-                          <div class="invalid-feedback">Ingresa un sku válido.</div>
+                          <label class="form-label" for="tipDocumento">Tipo Documento</label>
+                          <select class="form-select" id="tipDocumento" required>
+                              <option selected value="2">DNI</option>
+                              <option value="3">CE</option>
+                          </select>
                         </div>
                         <div class="col-md-6 mb-3">
-                          <label class="form-label" for="unidadProducto">Unidades</label>
-                          <input type="number" class="form-control" id="unidadProducto" value="1">
-                          <div class="invalid-feedback">Ingresa una cantidad valida.</div>
+                          <label class="form-label" for="numDoc">Número de documento</label>
+                          <input type="text" class="form-control" id="numDoc">
+                          <div class="invalid-feedback">Ingresa un número de documento válido.</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label class="form-label" for="numeroCanal">Número de Formulario</label>
+                          <input type="text" class="form-control" id="numeroCanal">
+                          <div class="invalid-feedback">Ingresa un número de formulario válido.</div>
+                        </div>
+                        <div class="col-md-6 mb-3" id="estadosPedido"></div>
+                        <div class="col-md-12 mb-3">
+                          <label class="form-label" for="nombresP">Nombres</label>
+                          <input type="text" class="form-control" id="nombresP">
+                          <div class="invalid-feedback">Ingresa Nombres completos.</div>
                         </div>
                         <div class="col-md-12 mb-3">
-                          <button type="button" class="btn btn-success" id="agregarProductoEsquema">Agregar Producto</button>
+                          <label class="form-label" for="apellidosP">Apellidos Completos</label>
+                          <input type="text" class="form-control" id="apellidosP">
+                          <div class="invalid-feedback">Ingresa Apellidos completos.</div>
                         </div>
-                        <hr class="hr-horizontal">
-
-                        <div class="table-responsive">
-                          <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                  <th>SKU/Producto</th>
-                                  <th>Cantidad</th>
-                                  <th>Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bodyProductosEsquema"></tbody>
-                          </table>
-                      </div>
+                         <div class="col-md-6 mb-3">
+                          <label class="form-label" for="idPeriodos">Periodos</label>
+                          <select class="form-select" id="idPeriodos" required>
+                          </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label class="form-label" for="codigoMotorizado">Código del Motorizado</label>
+                          <input type="text" class="form-control" id="codigoMotorizado">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label class="form-label" for="idSlots">Slots</label>
+                          <select class="form-select" id="idSlots" required>
+                          </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label class="form-label" for="descripcionSlot">Descripcion del Slot</label>
+                          <input type="text" class="form-control" id="descripcionSlot">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label class="form-label" for="fechaInicioEnvio">Fecha Inicio Envio</label>
+                          <input type="text" class="form-control" id="fechaInicioEnvio">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                          <label class="form-label" for="fechaInicioEnvio">Fecha Fin Envio</label>
+                          <input type="text" class="form-control" id="fechaFinEnvio">
+                        </div>
                         
                     </div>
             </div>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary" id="agregarEsquemaFinal" disabled>Agregar</button>
+                  <button type="button" class="btn btn-primary" id="actualizarPersona">Actualizar</button>
               </div>
           </div>
       </div>
-    </div>
+      </div>
 
       <!-- Footer Section Start -->
       <footer class="footer">
@@ -709,7 +670,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="../config/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
     <script>
 
@@ -739,193 +699,6 @@
             }
         }
 
-        let productosEscogidos = [];
-
-        document.getElementById('agregarProductoEsquema').addEventListener('click', async (e) => {
-          e.preventDefault();
-          const sku = document.getElementById('skuProducto').value;
-          const cantidad = document.getElementById('unidadProducto').value;
-
-          if((!sku && sku.trim().length ==0) || (!cantidad && cantidad.trim().length == 0)) {
-
-            if((!sku && sku.trim().length ==0) && (cantidad && cantidad.trim().length > 0)) {
-              toastr["error"]("Ingresa el campo de sku");
-              document.getElementById('skuProducto').classList.add('is-invalid');
-              return
-            } else if((!cantidad && cantidad.trim().length == 0) && (sku && sku.trim().length > 0)) {
-              toastr["error"]("Ingresa la cantidad");
-              document.getElementById('unidadProducto').classList.add('is-invalid');
-              return
-            } else {
-              toastr["error"]("Ingresa los campos de sku y cantidad");
-              document.getElementById('skuProducto').classList.add('is-invalid');
-              document.getElementById('unidadProducto').classList.add('is-invalid');
-              return
-            }
-          }
-
-          const productoEncontrado = productosEscogidos.find( p => p.sku == sku);
-          const indexProductoEncontrado = productosEscogidos.findIndex(p => p.sku == sku);
-          if(productoEncontrado) {
-            productosEscogidos[indexProductoEncontrado] = {
-              sku, cantidad: Number(productoEncontrado.cantidad) + Number(cantidad)
-            };
-          } else {
-             productosEscogidos.push({
-              sku, cantidad: Number(cantidad)
-            });
-          }
-
-          let datosProductos = ``;
-          for (const producto of productosEscogidos) {
-            datosProductos += `
-             <tr>
-              <td>${producto.sku}</td>
-              <td>${producto.cantidad}</td>
-              <td>
-                <button class="btn btn-danger"
-                  onclick="eliminarProducto('${producto.sku}')">Eliminar
-                </button></td>
-            </tr>
-            `;
-          }
-
-          document.getElementById('bodyProductosEsquema').innerHTML = datosProductos;
-          document.getElementById('skuProducto').value = '';
-          document.getElementById('unidadProducto').value = 1;
-
-          if(productosEscogidos.length == 0) {
-            document.getElementById('agregarEsquemaFinal').disabled = true;
-          } else {
-            document.getElementById('agregarEsquemaFinal').disabled = false;
-          }
-
-        })
-
-        document.getElementById('skuProducto').addEventListener('input', () => {
-          document.getElementById('skuProducto').classList.remove('is-invalid');
-          if(productosEscogidos.length == 0) {
-            document.getElementById('agregarEsquemaFinal').disabled = true;
-          } else {
-            document.getElementById('agregarEsquemaFinal').disabled = false;
-          }
-        })
-
-        document.getElementById('unidadProducto').addEventListener('input', () => {
-          document.getElementById('unidadProducto').classList.remove('is-invalid');
-        })
-
-        document.getElementById('agregarEsquemaFinal').addEventListener('click', async (e) => {
-          e.preventDefault();
-          const idCanalVenta = document.getElementById('idCanalVenta').value;
-          const idDiagnostico = document.getElementById('idDiagnostico').value;
-          const idFrecuencia = document.getElementById('idFrecuencia').value;
-
-          if(productosEscogidos.length == 0) {
-            toastr["error"]("Ingresa un producto para registrar el esquema!");
-            return
-          }
-
-          const skus = productosEscogidos.map(p => p.sku);
-          document.getElementById('agregarEsquemaFinal').innerHTML = `
-          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-          Actualizando...`;
-          document.getElementById('agregarEsquemaFinal').disabled = true;
-          await registrarEsquemaProductos({
-            idCanalVenta,
-            idDiagnostico,
-            idFrecuencia,
-            skus,
-            productos: productosEscogidos
-          })
-
-          document.getElementById('agregarEsquemaFinal').innerHTML = `
-          Actualizar`;
-          productosEscogidos = [];
-
-        })
-
-      async function registrarEsquemaProductos({
-        idCanalVenta,
-        idDiagnostico,
-        idFrecuencia,
-        skus,
-        productos
-      }) {
-
-        try {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-
-            const raw = JSON.stringify({
-                "idSubCanalVenta": idCanalVenta,
-                "idCIE10": idDiagnostico,
-                "idFrecuencia": idFrecuencia,
-                "skus": skus,
-                "productos": productos
-            });
-
-            const response = await fetch(`${API_BASE_URL}public/esquemas.php`, {
-              method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            });
-
-            const data = await response.json();
-            
-            if (!response.ok) {
-            throw new Error(data.error || 'Error al registrar esquema');
-            }
-
-          toastr["success"](`${data.message} - ID Esquema ${data.idEsquema}`);
-
-          // 1. Cierra el modal
-          const modal = bootstrap.Modal.getInstance(document.getElementById('modalAgregarEsquema'));
-          modal.hide();
-          
-        } catch (error) {
-          console.log("error", error);
-
-            //localStorage.clear();
-            // Redirigir, si aplica
-            //window.location.href = "../index.html";
-        }
-      }
-    
-
-        function eliminarProducto(sku) {
-          productosEscogidos = productosEscogidos.filter( p => p.sku != sku );
-
-          let datosProductos = ``;
-          for (const producto of productosEscogidos) {
-            datosProductos += `
-             <tr>
-              <td>${producto.sku}</td>
-              <td>${producto.cantidad}</td>
-              <td>
-                <button class="btn btn-danger"
-                  onclick="eliminarProducto('${producto.sku}')">Eliminar
-                </button></td>
-            </tr>
-            `;
-          }
-          document.getElementById('bodyProductosEsquema').innerHTML = datosProductos;
-          if(productosEscogidos.length == 0) {
-            document.getElementById('agregarEsquemaFinal').disabled = true;
-          } else {
-            document.getElementById('agregarEsquemaFinal').disabled = false;
-          }
-
-        }
-
-        document.getElementById('agregarEsquema').addEventListener('click', async () => {
-          productosEscogidos = [];
-          document.getElementById('bodyProductosEsquema').innerHTML = '';
-          document.getElementById('agregarEsquemaFinal').disabled = true;
-        })
-
         async function cargarDatosIniciales() {
             const informacionUser = leerDesdeLocalStorage('user', localStorage.getItem('token'));
             if(informacionUser) {
@@ -948,18 +721,21 @@
             cargando.style.display = 'block';
             tabla.style.display = 'none';
 
-            await listadoEstados();
+            await Promise.all([
+              listadoPeriodos(),
+              listadoDocumentos()
+            ])
 
             cargando.style.display = 'none';
             tabla.style.display = 'block';
         }
 
-        async function listadoEstados() {
+        async function listadoPeriodos() {
 
           try {
               const myHeaders = new Headers();
               myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-              const response = await fetch(`${API_BASE_URL}public/esquemas.php`, {
+              const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
                 method: 'GET',
                 headers :myHeaders
               });
@@ -970,43 +746,33 @@
               throw new Error(data.error || 'Error al obtener documento');
               }
 
-              let estadadosCombo = "";
-              let canalesCombo = "";
-              let diagnosticosCombo = "";
-              let frecuenciaCombo = "";
+              let periodosTabla = "";
+   
 
+              let estadosPedidoTabla = `
+              <label class="form-label" for="estadosPedido">Estados</label>
+              <select class="form-select" id="estadosPedido" required>
+              `;
 
-
-              for (const estado of data.listadoEstados) {
-                estadadosCombo += `<option ${estado.idEstadoInterno ===1 ? 'selected' : ''} value="${estado.idEstadoInterno}">${estado.descripcion}</option>`
-              }
-
-              for (const canal of data.canales) {
-                canalesCombo += `<option ${canal.idCanalVenta === 30 ? 'selected' : ''} value="${canal.idCanalVenta}">${canal.idCanalVenta} - ${canal.descripcion}</option>`
-              }
-
-              for (const diagnostico of data.diagnosticos) {
-                diagnosticosCombo += `<option ${diagnostico.idCIE10} value="${diagnostico.idCIE10}">${diagnostico.idCIE10}</option>`
-              }
-
-              for (const frecuencia of data.frecuencias) {
-                frecuenciaCombo += `<option ${frecuencia.idFrecuencia} value="${frecuencia.idFrecuencia}">${frecuencia.descripcion}</option>`
-              }
               
-              document.getElementById('idEstadosTratamientos').innerHTML = estadadosCombo;
-              document.getElementById('idCanalVenta').innerHTML = canalesCombo;
-              document.getElementById('idDiagnostico').innerHTML = diagnosticosCombo;
-              document.getElementById('idFrecuencia').innerHTML = frecuenciaCombo;
 
-              $('#idCanalVenta').select2({
-                dropdownParent: $('#modalAgregarEsquema')
-              });
-              $('#idDiagnostico').select2({
-                dropdownParent: $('#modalAgregarEsquema')
-              });
-              $('#idFrecuencia').select2({
-                dropdownParent: $('#modalAgregarEsquema')
-              });
+
+              for (const periodo of data.periodos) {
+                periodosTabla += `<option ${periodo.idAfiliadoPeriodo ===13 ? 'selected' : ''} value="${periodo.idAfiliadoPeriodo}">${periodo.descripcion}</option>`
+              }
+
+
+              for (const estadoPedido of data.estadosPedidos) {
+                estadosPedidoTabla += `<option ${estadoPedido.idPedidoEstado === 1 ? 'selected' : ''} value="${estadoPedido.idPedidoEstado}">${estadoPedido.descripcion}</option>`
+              }
+
+
+              document.getElementById('idPeriodos').innerHTML = periodosTabla;
+              document.getElementById('estadosPedido').innerHTML = estadosPedidoTabla + ' </select>';
+
+
+
+
 
           } catch (error) {
               console.log(error)
@@ -1016,45 +782,78 @@
           }
         }
 
-   
+      async function listadoDocumentos() {
+
+        try {
+            const myHeaders = new Headers();
+            myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
+            const response = await fetch(`${API_BASE_URL}public/persona.php`, {
+              method: 'GET',
+              headers :myHeaders
+            });
+
+            const data = await response.json();
+
+            let optionTiposDocumento = "";
+
+            for (const documento of data) {
+              optionTiposDocumento += `<option ${documento.idTipoDocumentoIdentidad ===2 ? 'selected' : ''} value="${documento.idTipoDocumentoIdentidad}">${documento.descripcion}</option>`
+            }
+
+            document.getElementById('tipDocumento').innerHTML = optionTiposDocumento;
+
+            if (!response.ok) {
+            throw new Error(data.error || 'Error al obtener documento');
+            }
+
+
+        } catch (error) {
+            localStorage.clear();
+            // Redirigir, si aplica
+            window.location.href = "../index.html";
+        }
+      }
+
+
         cargarDatosIniciales();
 
-        document.getElementById('buscarEsquema').addEventListener('click', async (e) => {
+        document.getElementById('buscarPedido').addEventListener('click', async (e) => {
             e.preventDefault();
-            const numeroDocumento = document.getElementById('numeroDocumento').value;
+            const tipo = 'PEDIDO';
+            const numeroDocumento = document.getElementById('numeroPedido').value;
 
             if(!numeroDocumento || numeroDocumento.trim().length == 0) {
-              toastr["error"]("Ingresa un número correcto");
-              document.getElementById('numeroDocumento').classList.add('is-invalid');
+              toastr["error"]("Ingresa un número pedido correcto!");
+              document.getElementById('numeroPedido').classList.add('is-invalid');
               return
             }
 
-            document.getElementById('buscarEsquema').innerHTML = `
+            document.getElementById('buscarPedido').innerHTML = `
               <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
               Buscando...`;
-            document.getElementById('buscarEsquema').disabled = true;
+            document.getElementById('buscarPedido').disabled = true;
             const cargando = document.getElementById('cargando');
             const tabla = document.getElementById('tablaDatos');
             cargando.style.display = 'block';
             tabla.style.display = 'none';
-            await buscarEsquemas({numero: numeroDocumento });
+            await buscarPedidosSolicitud({tipo, numero: numeroDocumento });
             cargando.style.display = 'none';
             tabla.style.display = 'block';
-            document.getElementById('buscarEsquema').innerHTML = `Buscar Esquema`;
-            document.getElementById('buscarEsquema').disabled = false;
+            document.getElementById('buscarPedido').innerHTML = `Buscar Pedido`;
+            document.getElementById('buscarPedido').disabled = false;
 
         })
 
-        document.getElementById('numeroDocumento').addEventListener('input', () => {
-          document.getElementById('numeroDocumento').classList.remove('is-invalid');
+        document.getElementById('numeroPedido').addEventListener('input', () => {
+          document.getElementById('numeroPedido').classList.remove('is-invalid');
         })
 
-        async function buscarEsquemas({numero}) {
+        async function buscarPedidosSolicitud({tipo = 'SOLICITUD', numero, id = null}) {
           numero = numero.trim();
           try {
               const myHeaders = new Headers();
               myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
-              const response = await fetch(`${API_BASE_URL}public/esquemas.php?numero=${numero ? numero.toUpperCase() : null}`, {
+              const response = await fetch(`${API_BASE_URL}public/periodos.php?tipo=${tipo}&numero=${numero ? numero.toUpperCase() : null }&id=${id}`, {
               method: 'GET',
               headers :myHeaders
               });
@@ -1062,8 +861,8 @@
               let data = await response.json();
 
             if(response.status == 404) {
-              toastr["error"]("No se encontró el esquema!");
-              document.getElementById('numeroDocumento').classList.add('is-invalid');
+              toastr["error"]("No se encontró el pedido!");
+              document.getElementById('numeroPedido').classList.add('is-invalid');
               data = [];
             }
 
@@ -1076,35 +875,36 @@
             }
 
             if(data.length > 0) {
-              document.getElementById('numeroDocumento').classList.remove('is-invalid');
+              document.getElementById('numeroPedido').classList.remove('is-invalid');
             }
 
             let productoFila = ""
 
-            if(data && data.length > 0) {
-              for (const pedido of data) {
-                productoFila += `
-                  <tr>
-                      <td>${pedido.descTipoDocumento} - ${pedido.numeroDocumento} / ${pedido.nombre} ${pedido.apellidos}</td>
-                      <td>${pedido.cie10} - ${pedido.descCie10}</td>
-                      <td>${pedido.grupo_sku} - ${pedido.grupo_productos}</td>
-                      <td>${pedido.grupo_unidad}</td>
-                      <td>${pedido.descStatus}</td>
-                      <td>${pedido.descAccionSugerida}</td>
-                      <td> <button class="btn btn-success" 
-                      data-idEstadoEsquema="${pedido.idEstadoInterno}"
-                      data-idPacienteDiagnostico="${pedido.idPacienteDiagnostico}"
-                      data-idPacienteSeguimiento="${pedido.idPacienteSeguimiento}"
-                      data-cliente="${pedido.descTipoDocumento} - ${pedido.numeroDocumento} / ${pedido.nombre} ${pedido.apellidos}"
-                      data-diagnostico="${pedido.cie10} - ${pedido.descCie10}"
-                      data-producto="${pedido.grupo_sku} - ${pedido.grupo_productos}"
-                      data-unidades="${pedido.grupo_unidad}"
-                      data-accionSugerida="${pedido.descAccionSugerida}"
-                      data-idPacienteEstado="${pedido.idPacienteEstado}"
-                      id="editarPersona" data-bs-toggle="modal" data-bs-target="#modalEditarEsquema">Editar</button> </td>
-                  </tr>
-                `;
-              }
+            for (const pedido of data) {
+              productoFila += `
+                <tr>
+                    <td>${pedido.idSolicitud ?? pedido.idPedido}</td>
+                    <td>${pedido.numero}</td>
+                    <td>${pedido.nombresEnvio}</td>
+                    <td>${pedido.apellidosEnvio}</td>
+                    <td>${pedido.descripcionDocumento}</td>
+                    <td>${pedido.numeroDocumentoEnvio}</td>
+                    <td>${pedido.descripcion}</td>
+                    <td> <button class="btn btn-success" data-idSolicitud="${pedido.idSolicitud}" data-idPedido="${pedido.idPedido}"  data-numero="${pedido.numero}" 
+                    data-idTipoDocumentoIdentidad="${pedido.idTipoDocumentoEnvio}" data-numeroDocumento="${pedido.numeroDocumentoEnvio}" 
+                    data-idAfiliadoPeriodo="${pedido.idAfiliadoPeriodo}" data-idSolicitudEstado="${pedido.idSolicitudEstado}"
+                    data-idPedidoEstado="${pedido.idPedidoEstado}"
+                    data-nombre="${pedido.nombresEnvio}" data-apellidos="${pedido.apellidosEnvio}"
+                    data-numeroCanal="${pedido.canalNumeroPedido}"
+                    data-codigoMotorizado="${pedido.codigoMotorizado}"
+                    data-descripcionRangoHorario="${pedido.descripcionRangoHorario}"
+                    data-fechaEnvio="${pedido.fechaEnvio}"
+                    data-fechaEnvioFin="${pedido.fechaEnvioFin}"
+                    data-idRangoHorario="${pedido.idRangoHorario}"
+                    data-idCanalVenta="${pedido.idCanalVenta}"
+                    id="editarPersona" data-bs-toggle="modal" data-bs-target="#modalEditarPersona">Editar</button> </td>
+                </tr>
+              `;
             }
 
             const tabla = $('#datatable');
@@ -1133,67 +933,190 @@
         }
 
       document.addEventListener('DOMContentLoaded', () => {
-        const modalEditar = document.getElementById('modalEditarEsquema');
+        const modalEditar = document.getElementById('modalEditarPersona');
 
         modalEditar.addEventListener('show.bs.modal', async function (event) {
           const button = event.relatedTarget; // Botón que abrió el modal
-          const idEstadoEsquema = button.getAttribute('data-idEstadoEsquema');
-          const cliente = button.getAttribute('data-cliente');
-          const diagnostico = button.getAttribute('data-diagnostico');
-          const producto = button.getAttribute('data-producto');
-          const unidades = button.getAttribute('data-unidades');
-          const accionSugerida = button.getAttribute('data-accionSugerida');
-          const idPacienteDiagnostico = button.getAttribute('data-idPacienteDiagnostico');
-          const idPacienteSeguimiento = button.getAttribute('data-idPacienteSeguimiento');
-          const idPacienteEstado = button.getAttribute('data-idPacienteEstado');
+          document.getElementById('estadosPedido').hidden = true;
 
-          document.getElementById('idEstadosTratamientos').value = idEstadoEsquema;
-          document.getElementById('idPacienteEstado').value = idPacienteEstado;
-          document.getElementById('cliente').value = cliente;
-          document.getElementById('diagnostico').value = diagnostico;
-          document.getElementById('producto').value = producto;
-          document.getElementById('unidades').value = unidades;
-          document.getElementById('sugerencia').value = accionSugerida;
-          document.getElementById('idPacienteDiagnostico').value = idPacienteDiagnostico;
-          document.getElementById('idPacienteSeguimiento').value = idPacienteSeguimiento;
+
+          // Extrae los datos del botón
+          const nombre = button.getAttribute('data-nombre');
+          const idPedido = button.getAttribute('data-idPedido');
+          const numero = button.getAttribute('data-numero');
+          const apellidos = button.getAttribute('data-apellidos');
+          const idSolicitudEstado = button.getAttribute('data-idSolicitudEstado');
+          const numeroCanal = button.getAttribute('data-numeroCanal');
+          const idPedidoEstado = button.getAttribute('data-idPedidoEstado');
+          const idTipoDocumentoIdentidad = button.getAttribute('data-idTipoDocumentoIdentidad');
+          const numeroDocumento = button.getAttribute('data-numeroDocumento');
+          const idAfiliadoPeriodo = button.getAttribute('data-idAfiliadoPeriodo');
+          const codigoMotorizado = button.getAttribute('data-codigoMotorizado');
+          const descripcionRangoHorario = button.getAttribute('data-descripcionRangoHorario');
+          const fechaEnvio = button.getAttribute('data-fechaEnvio');
+          const fechaEnvioFin = button.getAttribute('data-fechaEnvioFin');
+          const idRangoHorario = button.getAttribute('data-idRangoHorario');
+          const idCanalVenta = button.getAttribute('data-idCanalVenta');
+
+          // Inserta los datos en los campos del modal
+          document.getElementById('tipoNumero').value = 'PEDIDO';
+          document.getElementById('id').value = idPedido;
+          document.getElementById('numDoc').value = numeroDocumento;
+          document.getElementById('nombresP').value = nombre;
+          document.getElementById('apellidosP').value = apellidos;
+          document.getElementById('tipDocumento').value = idTipoDocumentoIdentidad;
+          document.getElementById('codigoMotorizado').value = codigoMotorizado;
+          document.getElementById('descripcionSlot').value = descripcionRangoHorario;
+          document.getElementById('idSlots').value = idRangoHorario;
+          document.getElementById('fechaInicioEnvio').value = fechaEnvio;
+          document.getElementById('fechaFinEnvio').value = fechaEnvioFin;
+          document.getElementById('idCanalVenta').value = idCanalVenta;
+
+          const myHeaders = new Headers();
+          myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
+          const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
+            method: 'GET',
+            headers :myHeaders
+          });
+
+          const data = await response.json();
+
+          let slotsTabla = "";
+          for (const rangosHorario of data.rangosHorarios) {
+            if(rangosHorario.idCanalVenta == idCanalVenta) {
+              if(idRangoHorario == rangosHorario.idRangoHorario) {
+                  let idTipoEnvio = null;
+                  if(rangosHorario.tipoRangoHorario == 'programado'){
+                    idTipoEnvio = 1;
+                  } else if (rangosHorario.tipoRangoHorario == 'recojo en tienda express') {
+                    idTipoEnvio = 4;
+                  } else if (rangosHorario.tipoRangoHorario == 'recojo en tienda') {
+                    idTipoEnvio = 3;
+                  } else if (rangosHorario.tipoRangoHorario == 'express') {
+                    idTipoEnvio = 2;
+                  }
+                  document.getElementById('idTipoEnvio').value = idTipoEnvio;
+
+              }
+              slotsTabla += `<option ${idRangoHorario == rangosHorario.idRangoHorario ? 'selected' : ''} value="${rangosHorario.idRangoHorario}">${rangosHorario.tipoRangoHorario} - ${rangosHorario.descripcion}</option>`
+            }
+          }
+          document.getElementById('idSlots').innerHTML = slotsTabla;
+
+
+
+          document.getElementById('numeroCanal').value = (numeroCanal && numeroCanal!= 'null' && numeroCanal != 'undefined') ? numeroCanal : null;
+          if(idAfiliadoPeriodo) {
+            document.getElementById('idPeriodos').value = idAfiliadoPeriodo;
+          }
+
+          document.getElementById('estadosPedido').hidden = false;
+          document.getElementById('estadosPedido').value = idPedidoEstado;
 
       });
     })
 
-    document.getElementById('actualizarEsquema').addEventListener('click', async (e) => {
+    document.getElementById('idSlots').addEventListener('change', async() => {
+      const myHeaders = new Headers();
+      myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
+      const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
+        method: 'GET',
+        headers :myHeaders
+      });
+
+      const data = await response.json();
+
+      const idRangoHorario = document.getElementById('idSlots').value;
+      let idTipoEnvio = null;
+      for (const rangosHorario of data.rangosHorarios) {
+          if(rangosHorario.idRangoHorario == idRangoHorario) {
+            if(rangosHorario.tipoRangoHorario == 'programado'){
+              idTipoEnvio = 1;
+            } else if (rangosHorario.tipoRangoHorario == 'recojo en tienda express') {
+              idTipoEnvio = 4;
+            } else if (rangosHorario.tipoRangoHorario == 'recojo en tienda') {
+              idTipoEnvio = 3;
+            } else if (rangosHorario.tipoRangoHorario == 'express') {
+              idTipoEnvio = 2;
+            }
+          }
+      }
+      document.getElementById('idTipoEnvio').value = idTipoEnvio;
+    })
+
+    document.getElementById('actualizarPersona').addEventListener('click', async (e) => {
       e.preventDefault();
+        const tipo = document.getElementById('tipoNumero').value;
+        const id = document.getElementById('id').value;
+        const numeroDocumentoEnvio =  document.getElementById('numDoc').value;
+        const nombresEnvio = document.getElementById('nombresP').value;
+        const apellidosEnvio =  document.getElementById('apellidosP').value;
+        const idTipoDocumentoEnvio =  document.getElementById('tipDocumento').value;
+        const idAfiliadoPeriodo = document.getElementById('idPeriodos').value;
+        const idEstadoPedido = document.getElementById('estadosPedido').value;
+        const numeroCanal = document.getElementById('numeroCanal').value;
+        const descripcionRangoHorario = document.getElementById('descripcionSlot').value;
+        const idRangoHorario = document.getElementById('idSlots').value;
+        const fechaEnvio = document.getElementById('fechaInicioEnvio').value;
+        const fechaEnvioFin = document.getElementById('fechaFinEnvio').value;
+        const codigoMotorizado = document.getElementById('codigoMotorizado').value;
+        const idTipoEnvio = document.getElementById('idTipoEnvio').value;
 
-      const idPacienteEstado = document.getElementById('idPacienteEstado').value;
-      const idEstadosTratamientos = document.getElementById('idEstadosTratamientos').value;
+        document.getElementById('actualizarPersona').innerHTML = `
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Actualizando...`;
+        document.getElementById('actualizarPersona').disabled = true;
 
+        const cargando = document.getElementById('cargando');
+        const tabla = document.getElementById('tablaDatos');
+        cargando.style.display = 'block';
+        tabla.style.display = 'none';
 
-      document.getElementById('actualizarEsquema').innerHTML = `
-        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-        Actualizando...`;
-      document.getElementById('actualizarEsquema').disabled = true;
+        await actualizarPersona({ 
+          id,
+          tipo,
+          idAfiliadoPeriodo: (idAfiliadoPeriodo && idAfiliadoPeriodo != 'undefined' && idAfiliadoPeriodo != 'null') ? idAfiliadoPeriodo : null,
+          nombresEnvio,
+          apellidosEnvio,
+          idTipoDocumentoEnvio,
+          numeroDocumentoEnvio,
+          idEstadoSolicitud: null,
+          idEstadoPedido: (idEstadoPedido && idEstadoPedido != 'undefined' && idEstadoPedido != 'null') ? idEstadoPedido : null,
+          numeroCanal:  (numeroCanal && numeroCanal != 'undefined' && numeroCanal != 'null') ? numeroCanal : null,
+          descripcionRangoHorario,
+          idRangoHorario,
+          fechaEnvio,
+          fechaEnvioFin,
+          codigoMotorizado:  (codigoMotorizado && codigoMotorizado != 'undefined' && codigoMotorizado != 'null') ? codigoMotorizado : null,
+          idTipoEnvio: (idTipoEnvio && idTipoEnvio != 'undefined' && idTipoEnvio != 'null') ? idTipoEnvio : null,
+        })
 
-      const cargando = document.getElementById('cargando');
-      const tabla = document.getElementById('tablaDatos');
-      cargando.style.display = 'block';
-      tabla.style.display = 'none';
+        document.getElementById('actualizarPersona').innerHTML = `
+          Actualizar`;
+        document.getElementById('actualizarPersona').disabled = false;
 
-      await actualizarEsquema({ 
-        idPacienteEstado: (idPacienteEstado && idPacienteEstado != 'null' && idPacienteEstado != 'undefined') ? idPacienteEstado : null,
-        idEstado: (idEstadosTratamientos && idEstadosTratamientos != 'null' && idEstadosTratamientos != 'undefined') ? idEstadosTratamientos : null,
-      })
-
-      document.getElementById('actualizarEsquema').innerHTML = `
-        Actualizar`;
-      document.getElementById('actualizarEsquema').disabled = false;
-
-      cargando.style.display = 'none';
-      tabla.style.display = 'block';
+        cargando.style.display = 'none';
+        tabla.style.display = 'block';
 
     })
 
-      async function actualizarEsquema({
-        idPacienteEstado,
-        idEstado
+      async function actualizarPersona({
+        id,
+        tipo,
+        idAfiliadoPeriodo,
+        nombresEnvio,
+        apellidosEnvio,
+        idTipoDocumentoEnvio,
+        numeroDocumentoEnvio,
+        idEstadoSolicitud,
+        idEstadoPedido,
+        numeroCanal,
+        descripcionRangoHorario,
+        idRangoHorario,
+        fechaEnvio,
+        fechaEnvioFin,
+        codigoMotorizado,
+        idTipoEnvio
       }) {
 
         try {
@@ -1202,11 +1125,25 @@
             myHeaders.append("X-Auth-Token", localStorage.getItem('token'));
 
             const raw = JSON.stringify({
-              idPacienteEstado,
-              idEstado
+              id,
+              tipo,
+              idAfiliadoPeriodo,
+              nombresEnvio,
+              apellidosEnvio,
+              idTipoDocumentoEnvio,
+              numeroDocumentoEnvio,
+              idEstadoSolicitud,
+              idEstadoPedido,
+              numeroCanal,
+              descripcionRangoHorario,
+              idRangoHorario,
+              fechaEnvio,
+              fechaEnvioFin,
+              codigoMotorizado,
+              idTipoEnvio
             });
 
-            const response = await fetch(`${API_BASE_URL}public/esquemas.php`, {
+            const response = await fetch(`${API_BASE_URL}public/periodos.php`, {
               method: 'POST',
                 headers: myHeaders,
                 body: raw,
@@ -1216,18 +1153,20 @@
             const data = await response.json();
             
             if (!response.ok) {
-            throw new Error(data.error || 'Error al actualizar esquema');
+            throw new Error(data.error || 'Error al actualizar persona');
             }
 
           toastr["success"]("Datos actualizados con éxito!");
 
           // 1. Cierra el modal
-          const modal = bootstrap.Modal.getInstance(document.getElementById('modalEditarEsquema'));
+          const modal = bootstrap.Modal.getInstance(document.getElementById('modalEditarPersona'));
           modal.hide();
 
           // 2. Refresca los resultados
-          await buscarEsquemas({
-            numero: document.getElementById('numeroDocumento').value,
+          await buscarPedidosSolicitud({
+            tipo,
+            numero: document.getElementById('numeroPedido').value,
+            id: (id && id!= 'null' && id != 'undefined') ? id : null
           });
           
 

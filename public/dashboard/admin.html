@@ -184,7 +184,7 @@
                 <span class="mini-icon">INICIO</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="menu-principal" style="display: none;">
               <a
                 class="nav-link active"
                 aria-current="page"
@@ -217,7 +217,7 @@
                 <span class="mini-icon">MODULO</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="menu-producto" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/productos.html"
@@ -271,7 +271,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" id="menu-cliente" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/clientes.html"
@@ -337,7 +337,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" id="menu-pedido" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/pedidos.html"
@@ -387,7 +387,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" id="menu-seguimiento" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/seguimientos.html"
@@ -414,7 +414,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" id="menu-motorizado" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/motorizados.html"
@@ -466,7 +466,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" id="menu-agentes" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/agentes.html"
@@ -502,7 +502,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" id="menu-esquemas" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/esquemas.html"
@@ -1552,10 +1552,50 @@
           "user",
           localStorage.getItem("token"),
         );
+
         if (informacionUser) {
           const jsonInfo = JSON.parse(informacionUser);
           document.getElementById("userEmail").innerText = jsonInfo.email;
         }
+
+        const info = localStorage.getItem('detalle');
+        const detalle = JSON.parse(info);
+
+
+        for (const seccion of detalle.secciones) {
+          if(seccion == 'PRINCIPAL') {
+            document.getElementById('menu-principal').style.display = 'block';
+          }
+
+          if(seccion == 'PRODUCTOS') {
+            document.getElementById('menu-producto').style.display = 'block';
+          }
+
+          if(seccion == 'AGENTES') {
+            document.getElementById('menu-agentes').style.display = 'block';
+          }
+
+          if(seccion == 'MOTORIZADOS') {
+            document.getElementById('menu-motorizado').style.display = 'block';
+          }
+          
+          if(seccion == 'SEGUIMIENTOS') {
+            document.getElementById('menu-seguimiento').style.display = 'block';
+          }
+
+          if(seccion == 'PEDIDOS/SOLICITUDES') {
+            document.getElementById('menu-pedido').style.display = 'block';
+          }
+
+          if(seccion == 'ESQUEMAS') {
+            document.getElementById('menu-esquemas').style.display = 'block';
+          }
+
+          if(seccion == 'CLIENTES') {
+            document.getElementById('menu-cliente').style.display = 'block';
+          }
+        }
+
 
         document
           .getElementById("cerrarSesion")

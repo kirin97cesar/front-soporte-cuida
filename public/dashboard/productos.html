@@ -191,7 +191,7 @@
                 <span class="mini-icon">INICIO</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item"  id="menu-principal" style="display: none;">
               <a class="nav-link" href="../dashboard/admin.html">
                 <i class="icon">
                   <svg
@@ -221,7 +221,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item"  id="menu-producto" style="display: none;">
               <a
                 class="nav-link active"
                 title="Productos"
@@ -278,7 +278,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item"  id="menu-cliente" style="display: none;">
               <a
                 class="nav-link"
                 title="Clientes"
@@ -345,7 +345,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item"  id="menu-pedido" style="display: none;">
               <a
                 class="nav-link"
                 title="Pedidos"
@@ -396,7 +396,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item"  id="menu-seguimiento" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/seguimientos.html"
@@ -423,7 +423,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item"  id="menu-motorizado" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/motorizados.html"
@@ -475,7 +475,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item"  id="menu-agentes" style="display: none;">
               <a
                 class="nav-link"
                 href="../dashboard/agentes.html"
@@ -511,7 +511,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item"  id="menu-esquemas" style="display: none;">
               <a
                 class="nav-link"
                 title="Esquemas"
@@ -2014,6 +2014,50 @@
           document.getElementById("userEmail").innerText = jsonInfo.email;
         }
 
+            const info = localStorage.getItem('detalle');
+        const detalle = JSON.parse(info);
+
+        for (const seccion of detalle.secciones) {
+          if(seccion == 'PRINCIPAL') {
+            document.getElementById('menu-principal').style.display = 'block';
+          }
+
+          if(seccion == 'PRODUCTOS') {
+            document.getElementById('menu-producto').style.display = 'block';
+          }
+
+          if(seccion == 'AGENTES') {
+            document.getElementById('menu-agentes').style.display = 'block';
+          }
+
+          if(seccion == 'MOTORIZADOS') {
+            document.getElementById('menu-motorizado').style.display = 'block';
+          }
+          
+          if(seccion == 'SEGUIMIENTOS') {
+            document.getElementById('menu-seguimiento').style.display = 'block';
+          }
+
+          if(seccion == 'PEDIDOS/SOLICITUDES') {
+            document.getElementById('menu-pedido').style.display = 'block';
+          }
+
+          if(seccion == 'ESQUEMAS') {
+            document.getElementById('menu-esquemas').style.display = 'block';
+          }
+
+          if(seccion == 'CLIENTES') {
+            document.getElementById('menu-cliente').style.display = 'block';
+          }
+        }
+
+       const seccionVerificada = detalle?.secciones?.find(seccion => seccion == 'PRODUCTOS');
+
+        if(!seccionVerificada) {
+          localStorage.clear();
+          window.location.href = "../index.html";
+        }        
+
         document
           .getElementById("cerrarSesion")
           .addEventListener("click", () => {
@@ -2459,12 +2503,13 @@
         porcentajeDescuento,
         montoDescuentoMinimo,
       }) {
+        let raw = null;
         try {
           const myHeaders = new Headers();
           myHeaders.append("Content-Type", "application/json");
           myHeaders.append("X-Auth-Token", localStorage.getItem("token"));
 
-          const raw = JSON.stringify({
+          raw = JSON.stringify({
             idProducto,
             nombreComercial,
             idCanalVenta,
@@ -2554,6 +2599,8 @@
           //localStorage.clear();
           // Redirigir, si aplica
           //window.location.href = "../index.html";
+        } finally {
+          await REGISTRAR_SOPORTE({ tipo: 'ACTUALIZAR/REGISTRAR PRODUCTO', payload: raw});
         }
       }
     </script>

@@ -118,7 +118,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="./config/index.js"></script>
-    <script>
+    
+    <script src="./assets/js/aws-amplify.min.js"></script>
+    
+    <script type="module">
+      const { Auth } = window.aws_amplify;
+
+      Auth.configure({
+        region: 'us-east-1',
+        userPoolId: 'us-east-1_byqG3MxAR',
+        userPoolWebClientId: '5nht571b9u5up55tki3p8oaisn'
+      });
+
       // Encriptar y guardar
       function guardarEnLocalStorage(clave, valor, token) {
         const encriptado = CryptoJS.AES.encrypt(valor, token).toString();
@@ -163,13 +174,35 @@
       // Manejo del login
       document
         .getElementById("iniciarSesion")
-        .addEventListener("click", (e) => {
+        .addEventListener("click", async (e) => {
           e.preventDefault();
           let email = document.getElementById("email");
           let password = document.getElementById("password");
 
           if (esCorreoValido(email.value) && password.value) {
-            loginUsuario({ email, password });
+            try {
+              document.getElementById("iniciarSesion").innerHTML = `
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Verificando inicio...`;
+              document.getElementById("iniciarSesion").disabled = true;
+              const user = await loginCognito({ email: email.value.trim(), password: password.value.trim() });
+              let arreglo = ["PRINCIPAL"];
+              if(user.attributes['website']) {
+                arreglo = user.attributes['website'].match(/"([^"]+)"/g).map(s => s.replace(/"/g, ''));
+              }
+              await localStorage.setItem('detalle', JSON.stringify({secciones: arreglo}));
+              await loginUsuario({ email, attributes: user.attributes });
+              return
+            } catch (error) {
+              console.log(error)
+              localStorage.clear();
+              toastr["error"]("Ingresa correo y contraseña!");
+              document.getElementById("iniciarSesion").innerHTML = `
+              Vamos`;
+              document.getElementById("iniciarSesion").disabled = false;
+              email.classList.add("is-invalid");
+              password.classList.add("is-invalid");
+            }
           } else {
             if (!esCorreoValido(email.value) && !password.value) {
               localStorage.clear();
@@ -188,7 +221,7 @@
           }
         });
 
-      async function loginUsuario({ email, password }) {
+      async function loginUsuario({ email, attributes }) {
         email.classList.remove("is-invalid");
         password.classList.remove("is-invalid");
 
@@ -198,7 +231,7 @@
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               usuario: email.value,
-              clave: password.value,
+              attributes
             }),
           });
 
@@ -215,7 +248,7 @@
 
           guardarEnLocalStorage(
             "user",
-            JSON.stringify({ email: email.value, password: password.value }),
+            JSON.stringify({ email: email.value, attributes }),
             data.token,
           );
 
@@ -239,12 +272,24 @@
         if (detalle) {
           const { email, password } = JSON.parse(detalle);
           document.getElementById("email").value = email;
-          document.getElementById("password").value = password;
           console.log("🧠 Sesión recordada:", email);
         }
       }
 
       leerSesionGuardada();
+
+    async function loginCognito({ email, password }) {
+      try {
+        const user = await Auth.signIn(email, password);
+
+        return user;
+      } catch (err) {
+        throw err;
+      }
+    }
+
+
     </script>
+  
   </body>
 </html>

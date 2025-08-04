@@ -2127,12 +2127,32 @@
             document.getElementById("actualizarPedidos").checked;
 
           await actualizarPersona({
-            nombre: nombrePersona,
-            apellidos: apellidosPersona,
-            apellidosMaterno,
-            apellidosPaterno,
+            nombre: nombre &&
+              nombre != "undefined" &&
+              nombre != "null"
+                ? nombre
+                : null,
+            apellidos: apellidos &&
+              apellidos != "undefined" &&
+              apellidos != "null"
+                ? apellidos
+                : null,
+            apellidosMaterno: apellidosMaterno &&
+              apellidosMaterno != "undefined" &&
+              apellidosMaterno != "null"
+                ? apellidosMaterno
+                : null,
+            apellidosPaterno: apellidosPaterno &&
+              apellidosPaterno != "undefined" &&
+              apellidosPaterno != "null"
+                ? apellidosPaterno
+                : null,
             idTipoDocumentoIdentidad: idTipoDocumento,
-            numeroDocumento,
+            numeroDocumento: numeroDocumento &&
+              numeroDocumento != "undefined" &&
+              numeroDocumento != "null"
+                ? numeroDocumento
+                : null,
             idPersona,
             pedidosAsociados: aceptarActualizarAsociados ? 1 : 0,
             tipo,

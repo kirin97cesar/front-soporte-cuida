@@ -1077,7 +1077,25 @@
                     </div>
                   </div>
                   <div class="col-md-12 mb-3">
-                    <label class="form-label" for="apellidosP"
+                    <label class="form-label" for="apellidosPaterno"
+                      >Apellido Paterno</label
+                    >
+                    <input type="text" class="form-control" id="apellidosPaterno" />
+                    <div class="invalid-feedback">
+                      Ingresa Apellido Paterno.
+                    </div>
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="apellidosMaterno"
+                      >Apellido Materno</label
+                    >
+                    <input type="text" class="form-control" id="apellidosMaterno" />
+                    <div class="invalid-feedback">
+                      Ingresa Apellido Materno.
+                    </div>
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="apellidosMaterno"
                       >Apellidos Completos</label
                     >
                     <input type="text" class="form-control" id="apellidosP" />
@@ -2010,6 +2028,8 @@
                     <td>${persona.descripcion}</td>
                     <td>${persona.numeroDocumento}</td>
                     <td> <button class="btn btn-success" data-nombre="${persona.nombre}"  data-apellidos="${persona.apellidos}" 
+                      data-apellidos-paterno="${persona.apePaterno}"
+                      data-apellidos-materno="${persona.apeMaterno}"
                       data-idTipoDocumentoIdentidad="${persona.idTipoDocumentoIdentidad}" data-numeroDocumento="${persona.numeroDocumento}"
                       data-idPersona="${persona.idPersona}" id="editarPersona" data-bs-toggle="modal" data-bs-target="#modalEditarPersona">
                       Editar</button> 
@@ -2058,6 +2078,9 @@
           const idPersona = button.getAttribute("data-idPersona");
           const nombre = button.getAttribute("data-nombre");
           const apellidos = button.getAttribute("data-apellidos");
+          const apellidosPaterno = button.getAttribute("data-apellidos-paterno");
+          const apellidosMaterno = button.getAttribute("data-apellidos-materno");
+
           const idTipoDocumentoIdentidad = button.getAttribute(
             "data-idTipoDocumentoIdentidad",
           );
@@ -2066,6 +2089,9 @@
           document.getElementById("idPersona").value = idPersona;
           document.getElementById("numDoc").value = numeroDocumento;
           document.getElementById("nombresP").value = nombre;
+          document.getElementById("apellidosMaterno").value = apellidosPaterno;
+          document.getElementById("apellidosPaterno").value = apellidosMaterno;
+
           document.getElementById("apellidosP").value = apellidos;
           document.getElementById("tipDocumento").value =
             idTipoDocumentoIdentidad;
@@ -2092,6 +2118,9 @@
           const numeroDocumento = document.getElementById("numDoc").value;
           const nombrePersona = document.getElementById("nombresP").value;
           const apellidosPersona = document.getElementById("apellidosP").value;
+          const apellidosMaterno = document.getElementById("apellidosMaterno").value;
+          const apellidosPaterno = document.getElementById("apellidosPaterno").value;
+
           const idTipoDocumento = document.getElementById("tipDocumento").value;
           const tipo = document.getElementById("tipoSolicitud").value;
           const aceptarActualizarAsociados =
@@ -2100,6 +2129,8 @@
           await actualizarPersona({
             nombre: nombrePersona,
             apellidos: apellidosPersona,
+            apellidosMaterno,
+            apellidosPaterno,
             idTipoDocumentoIdentidad: idTipoDocumento,
             numeroDocumento,
             idPersona,
@@ -2115,6 +2146,8 @@
       async function actualizarPersona({
         nombre,
         apellidos,
+        apellidosPaterno,
+        apellidosMaterno,
         idTipoDocumentoIdentidad,
         numeroDocumento,
         idPersona,
@@ -2130,6 +2163,8 @@
           raw = JSON.stringify({
             nombre,
             apellidos,
+            apellidosPaterno,
+            apellidosMaterno,
             idTipoDocumentoIdentidad,
             numeroDocumento,
             idPersona,

@@ -2127,14 +2127,14 @@
             document.getElementById("actualizarPedidos").checked;
 
           await actualizarPersona({
-            nombre: nombre &&
-              nombre != "undefined" &&
-              nombre != "null"
-                ? nombre
+            nombre: nombrePersona &&
+              nombrePersona != "undefined" &&
+              nombrePersona != "null"
+                ? nombrePersona
                 : null,
-            apellidos: apellidos &&
-              apellidos != "undefined" &&
-              apellidos != "null"
+            apellidos: apellidosPersona &&
+              apellidosPersona != "undefined" &&
+              apellidosPersona != "null"
                 ? apellidos
                 : null,
             apellidosMaterno: apellidosMaterno &&

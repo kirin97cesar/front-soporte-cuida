@@ -1,0 +1,24 @@
+/* Scroll horizontal más ancho solo para contenedor Bootstrap */
+.table-responsive::-webkit-scrollbar {
+    height: 16px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: var(--bs-primary);
+    border-radius: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: var(--bs-primary);
+}
+
+#datatable {
+    overflow-x: scroll !important; 
+    scrollbar-width: auto;
+    scrollbar-color: var(--bs-primary) #f1f1f1;
+}

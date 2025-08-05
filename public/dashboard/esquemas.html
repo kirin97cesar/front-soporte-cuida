@@ -2182,8 +2182,14 @@
           document.getElementById("userEmail").innerText = jsonInfo.email;
         }
 
-            const info = localStorage.getItem('detalle');
+        const info = localStorage.getItem('detalle');
         const detalle = JSON.parse(info);
+
+        if(!detalle || ( detalle && detalle.secciones.length == 0) ) {
+          localStorage.clear();
+          window.location.href = "../index.html";
+          return;
+        }
 
         for (const seccion of detalle.secciones) {
           if(seccion == 'PRINCIPAL') {

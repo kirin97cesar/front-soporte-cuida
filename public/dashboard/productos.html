@@ -1048,8 +1048,8 @@
                         <th>Precio Normal</th>
                         <th>Id Canal Venta</th>
                         <th>Descripcion Canal Venta</th>
-                        <th>Porcentaje Descuento</th>
-                        <th>Monto descuento Minimo</th>
+                        <th>Porcentaje Descuento (PAP %)</th>
+                        <th>Monto descuento Minimo (PAP)</th>
                         <th>Opciones</th>
                       </tr>
                     </thead>
@@ -1138,7 +1138,7 @@
 
                   <div class="col-md-6 mb-3">
                     <label class="form-label" for="porcentajeDescuento"
-                      >Porcentaje Descuento</label
+                      >Porcentaje Descuento (% PAP) </label
                     >
                     <input
                       type="number"
@@ -1152,7 +1152,7 @@
 
                   <div class="col-md-6 mb-3">
                     <label class="form-label" for="montoDescuentoMinimo"
-                      >Monto descuento minimo</label
+                      >Monto descuento minimo (PAP)</label
                     >
                     <input
                       type="number"
@@ -2014,8 +2014,14 @@
           document.getElementById("userEmail").innerText = jsonInfo.email;
         }
 
-            const info = localStorage.getItem('detalle');
+        const info = localStorage.getItem('detalle');
         const detalle = JSON.parse(info);
+
+        if(!detalle || ( detalle && detalle.secciones.length == 0) ) {
+          localStorage.clear();
+          window.location.href = "../index.html";
+          return;
+        }
 
         for (const seccion of detalle.secciones) {
           if(seccion == 'PRINCIPAL') {

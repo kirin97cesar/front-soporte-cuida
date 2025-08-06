@@ -2369,12 +2369,6 @@
           const montoDescuentoMinimo = document.getElementById(
             "montoDescuentoMinimoA",
           ).value;
-          const porcentajeDescuentoAnterior = document.getElementById(
-            "porcentajeDescuentoAAnterior",
-          ).value;
-          const montoDescuentoMinimoAnterior = document.getElementById(
-            "montoDescuentoMinimoAAnterior",
-          ).value;
           const skuProducto = document.getElementById("skuProductoA").value;
           const canalVenta = document.getElementById("canalVenta").value;
           const idPetitorio = document.getElementById("idConveniosA").value;
@@ -2411,15 +2405,7 @@
             montoDescuentoMinimo:
               montoDescuentoMinimo && montoDescuentoMinimo.trim().length > 0
                 ? montoDescuentoMinimo
-                : 0,
-            porcentajeDescuentoAnterior:
-              porcentajeDescuentoAnterior && porcentajeDescuentoAnterior.trim().length > 0
-                ? porcentajeDescuentoAnterior
-                : 0,
-            montoDescuentoMinimoAnterior:
-              montoDescuentoMinimoAnterior && montoDescuentoMinimoAnterior.trim().length > 0
-                ? montoDescuentoMinimoAnterior
-                : 0,
+                : 0
           });
 
           document.getElementById("registrarProducto").innerHTML = `
@@ -2437,9 +2423,7 @@
         sku,
         idPetitorio,
         porcentajeDescuento,
-        montoDescuentoMinimo,
-        porcentajeDescuentoAnterior,
-        montoDescuentoMinimoAnterior,
+        montoDescuentoMinimo
       }) {
         let raw = null;
         try {
@@ -2455,9 +2439,7 @@
             sku,
             idPetitorio,
             porcentajeDescuento,
-            montoDescuentoMinimo,
-            porcentajeDescuentoAnterior,
-            montoDescuentoMinimoAnterior,
+            montoDescuentoMinimo
           });
 
           const response = await fetch(`${API_BASE_URL}public/productos.php`, {

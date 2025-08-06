@@ -974,7 +974,7 @@
                       Ingresa Nombre Comercial.
                     </div>
                   </div>
-                  <div class="col-md-6 mb-3">
+                  <div class="col-md-12 mb-3">
                     <label class="form-label" for="precioNormal"
                       >Precio Normal</label
                     >
@@ -987,8 +987,20 @@
                   </div>
 
                   <div class="col-md-6 mb-3">
+                    <label class="form-label" for="porcentajeDescuentoAnterior"
+                      >Anterior Porcentaje Descuento (% PAP) </label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="porcentajeDescuentoAnterior"
+                      disabled
+                    />
+                  </div>
+
+                  <div class="col-md-6 mb-3">
                     <label class="form-label" for="porcentajeDescuento"
-                      >Porcentaje Descuento (% PAP) </label
+                      >Nuevo Porcentaje Descuento (% PAP) </label
                     >
                     <input
                       type="number"
@@ -998,6 +1010,18 @@
                     <div class="invalid-feedback">
                       Ingresa porcentaje descuento.
                     </div>
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="montoDescuentoMinimoAnterior"
+                      >Anterior Monto descuento minimo (PAP)</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="montoDescuentoMinimoAnterior"
+                      disabled
+                    />
                   </div>
 
                   <div class="col-md-6 mb-3">
@@ -1121,6 +1145,8 @@
                     </div>
                   </div>
 
+          
+
                   <div class="col-md-6 mb-3">
                     <label class="form-label" for="porcentajeDescuentoA"
                       >Porcentaje Descuento</label
@@ -1135,6 +1161,8 @@
                     </div>
                   </div>
 
+                 
+
                   <div class="col-md-6 mb-3">
                     <label class="form-label" for="montoDescuentoMinimoA"
                       >Monto descuento minimo</label
@@ -1148,6 +1176,7 @@
                       Ingresa montoDescuentoMinimo.
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -2099,6 +2128,8 @@
                       data-idCanalVenta="${producto.idCanalVenta}" 
                       data-porcentajeDescuento="${producto.porcentajeDescuento}"
                       data-montoDescuentoMinimo="${producto.montoDescuentoMinimo}"
+                      data-porcentajeDescuentoAnterior="${producto.porcentajeDescuentoAnterior}"
+                      data-montoDescuentoMinimoAnterior="${producto.montoDescuentoMinimoAnterior}"
                       data-idPetitorio="${producto.idPetitorio}"
                       data-canalVenta="${producto.descripcionCanalVenta}"
                       data-descripcionConvenio="${producto.descripcionConvenio}"
@@ -2186,9 +2217,11 @@
           const porcentajeDescuento = button.getAttribute(
             "data-porcentajeDescuento",
           );
+          const porcentajeDescuentoAnterior = button.getAttribute("data-porcentajeDescuentoAnterior");
           const montoDescuentoMinimo = button.getAttribute(
             "data-montoDescuentoMinimo",
           );
+          const montoDescuentoMinimoAnterior = button.getAttribute("data-montoDescuentoMinimoAnterior");
           const nombreConvenio = button.getAttribute(
             "data-descripcionConvenio",
           );
@@ -2222,11 +2255,23 @@
             porcentajeDescuento != "undefined"
               ? porcentajeDescuento
               : 0;
+          document.getElementById("porcentajeDescuentoAnterior").value =
+            porcentajeDescuentoAnterior &&
+            porcentajeDescuentoAnterior != "null" &&
+            porcentajeDescuentoAnterior != "undefined"
+              ? porcentajeDescuentoAnterior
+              : 0;
           document.getElementById("montoDescuentoMinimo").value =
             montoDescuentoMinimo &&
             montoDescuentoMinimo != "null" &&
             montoDescuentoMinimo != "undefined"
               ? montoDescuentoMinimo
+              : 0;
+          document.getElementById("montoDescuentoMinimoAnterior").value =
+            montoDescuentoMinimoAnterior &&
+            montoDescuentoMinimoAnterior != "null" &&
+            montoDescuentoMinimoAnterior != "undefined"
+              ? montoDescuentoMinimoAnterior
               : 0;
         });
       });
@@ -2263,6 +2308,12 @@
           const montoDescuentoMinimo = document.getElementById(
             "montoDescuentoMinimo",
           ).value;
+          const porcentajeDescuentoAnterior = document.getElementById(
+            "porcentajeDescuentoAnterior",
+          ).value;
+          const montoDescuentoMinimoAnterior = document.getElementById(
+            "montoDescuentoMinimoAnterior",
+          ).value;
           const skuProducto = document.getElementById("skuProducto").value;
           const canalVenta = document.getElementById("canalVenta").value;
           const idPetitorio = document.getElementById("idPetitorio").value;
@@ -2294,6 +2345,8 @@
                 : null,
             porcentajeDescuento: porcentajeDescuento ?? null,
             montoDescuentoMinimo: montoDescuentoMinimo ?? null,
+            porcentajeDescuentoAnterior: porcentajeDescuentoAnterior ?? null,
+            montoDescuentoMinimoAnterior: montoDescuentoMinimoAnterior ?? null,
           });
 
           document.getElementById("actualizarProducto").innerHTML = `
@@ -2315,6 +2368,12 @@
           ).value;
           const montoDescuentoMinimo = document.getElementById(
             "montoDescuentoMinimoA",
+          ).value;
+          const porcentajeDescuentoAnterior = document.getElementById(
+            "porcentajeDescuentoAAnterior",
+          ).value;
+          const montoDescuentoMinimoAnterior = document.getElementById(
+            "montoDescuentoMinimoAAnterior",
           ).value;
           const skuProducto = document.getElementById("skuProductoA").value;
           const canalVenta = document.getElementById("canalVenta").value;
@@ -2353,6 +2412,14 @@
               montoDescuentoMinimo && montoDescuentoMinimo.trim().length > 0
                 ? montoDescuentoMinimo
                 : 0,
+            porcentajeDescuentoAnterior:
+              porcentajeDescuentoAnterior && porcentajeDescuentoAnterior.trim().length > 0
+                ? porcentajeDescuentoAnterior
+                : 0,
+            montoDescuentoMinimoAnterior:
+              montoDescuentoMinimoAnterior && montoDescuentoMinimoAnterior.trim().length > 0
+                ? montoDescuentoMinimoAnterior
+                : 0,
           });
 
           document.getElementById("registrarProducto").innerHTML = `
@@ -2371,6 +2438,8 @@
         idPetitorio,
         porcentajeDescuento,
         montoDescuentoMinimo,
+        porcentajeDescuentoAnterior,
+        montoDescuentoMinimoAnterior,
       }) {
         let raw = null;
         try {
@@ -2387,6 +2456,8 @@
             idPetitorio,
             porcentajeDescuento,
             montoDescuentoMinimo,
+            porcentajeDescuentoAnterior,
+            montoDescuentoMinimoAnterior,
           });
 
           const response = await fetch(`${API_BASE_URL}public/productos.php`, {
@@ -2454,6 +2525,7 @@
 
           // 2. Refresca los resultados
           document.getElementById("canalesVentasB").value = idCanalVenta;
+          $('#canalesVentasB').val(idCanalVenta).trigger('change');
           document.getElementById("idConvenios").value = idPetitorio ?? "null";
           document.getElementById("sku").value = sku;
 

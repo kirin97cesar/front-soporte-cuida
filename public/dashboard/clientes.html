@@ -1621,6 +1621,18 @@
       </div>
     </div>
 
+    <script>
+      // Detecta modo guardado y lo aplica al <body> o al .loader directamente
+      (function() {
+        const loader = document.querySelector('.loader');
+        console.log("Aaaaaa", loader)
+        const color = sessionStorage.getItem("color-mode");
+        if (color === "dark" || color === "light") {
+          loader.classList.add(color);
+        }
+      })();
+    </script>
+
     <!-- Library Bundle Script -->
     <script src="../assets/js/core/libs.min.js"></script>
 

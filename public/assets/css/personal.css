@@ -22,3 +22,11 @@
     scrollbar-width: auto;
     scrollbar-color: var(--bs-primary) #f1f1f1;
 }
+
+.loader.simple-loader.dark {
+   background-color: var(--bs-gray-dark);
+}
+
+.loader.simple-loader.light {
+   background-color: #f1f1f1;
+}

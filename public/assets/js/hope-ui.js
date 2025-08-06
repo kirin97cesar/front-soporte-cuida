@@ -306,14 +306,28 @@ const resizePlugins = () => {
               LoaderInit
 -----------------------------------------------------------------------*/
 const loaderInit = () => {
-  const loader = document.querySelector('.loader')
+  const loader = document.querySelector('.loader');
+  console.log("Cargando loader:", loader);
+
+  const color = sessionStorage.getItem("color-mode"); // "light" o "dark"
+  console.log("Modo de color:", color);
+
+  if (!loader) return; // seguridad: evita error si no existe
+
   setTimeout(() => {
-    loader.classList.add('animate__animated', 'animate__fadeOut')
+    if (color === "light" || color === "dark") {
+      loader.classList.add(color); // añade clase 'light' o 'dark' temporalmente
+    }
+
+    loader.classList.add('animate__animated', 'animate__fadeOut');
+
     setTimeout(() => {
-      loader.classList.add('d-none')
-    }, 500)
-  }, 500)
-}
+      loader.classList.remove('light', 'dark', 'animate__animated', 'animate__fadeOut');
+      loader.classList.add('d-none'); // oculta el loader
+    }, 600);
+  }, 600);
+};
+
 /*---------------------------------------------------------------------
               Sidebar Toggle
 -----------------------------------------------------------------------*/

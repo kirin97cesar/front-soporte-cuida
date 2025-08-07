@@ -974,7 +974,8 @@
                       Ingresa Nombre Comercial.
                     </div>
                   </div>
-                  <div class="col-md-12 mb-3">
+
+                  <div class="col-md-6 mb-3">
                     <label class="form-label" for="precioNormal"
                       >Precio Normal</label
                     >
@@ -985,6 +986,18 @@
                     />
                     <div class="invalid-feedback">Ingresa precio normal.</div>
                   </div>
+
+                   <div class="col-md-6 mb-3">
+                      <label class="form-label" for="idClasificacion"
+                        >Clasificacion de Valor</label
+                      >
+                      <select
+                        class="form-select"
+                        id="idClasificacion"
+                        required
+                      >
+                      </select>
+                    </div>
 
                   <div class="col-md-6 mb-3">
                     <label class="form-label" for="porcentajeDescuentoAnterior"
@@ -1994,6 +2007,7 @@
 
           let canalTabla = "<option selected value='null'>TODOS</option>";
           let conveniosTabla = "<option selected value='null'>NINGUNO</option>";
+          let clasificacionesSelect = "";
 
           for (const canal of data.canales) {
             canalTabla += `<option value="${canal.idCanalVenta}">${canal.idCanalVenta} - ${canal.descripcion} ${canal.descripcionCanalPadre ? `- ${canal.descripcionCanalPadre}` : ""}</option>`;
@@ -2003,10 +2017,16 @@
             conveniosTabla += `<option value="${convenio.idPetitorio}">${convenio.idPetitorio} - ${convenio.descripcion} </option>`;
           }
 
+          for (const clasificacion of data.clasificaciones) {
+            clasificacionesSelect += `<option value="${clasificacion.id}">${clasificacion.id} - ${clasificacion.valor} </option>`;
+          }
+
           document.getElementById("canalesVentasB").innerHTML = canalTabla;
           document.getElementById("idConvenios").innerHTML = conveniosTabla;
           document.getElementById("canalVentaA").innerHTML = canalTabla;
           document.getElementById("idConveniosA").innerHTML = conveniosTabla;
+          document.getElementById("idClasificacion").innerHTML = clasificacionesSelect;
+
 
           $("#canalesVentasB").select2();
           $("#idConvenios").select2();
@@ -2021,9 +2041,10 @@
             throw new Error(data.error || "Error al obtener documento");
           }
         } catch (error) {
-          localStorage.clear();
-          // Redirigir, si aplica
-          window.location.href = "../index.html";
+          console.log(error)
+          // localStorage.clear();
+          // // Redirigir, si aplica
+          // window.location.href = "../index.html";
         }
       }
 
@@ -2123,6 +2144,7 @@
                       <td> <button class="btn btn-success" 
                       data-idProducto="${producto.idProducto}"
                       data-sku="${producto.skuWMS}"  
+                      data-idClasificacionValor="${producto.idClasificacionValor}"
                       data-nombreComercial="${producto.nombreComercial}" 
                       data-precioNormal="${producto.precioNormal}" 
                       data-idCanalVenta="${producto.idCanalVenta}" 
@@ -2214,6 +2236,8 @@
           const idProducto = button.getAttribute("data-idProducto");
           const nombreComercial = button.getAttribute("data-nombreComercial");
           const precioNormal = button.getAttribute("data-precioNormal");
+          const idClasificacionValor = button.getAttribute("data-idClasificacionValor");
+          
           const porcentajeDescuento = button.getAttribute(
             "data-porcentajeDescuento",
           );
@@ -2243,6 +2267,7 @@
           document.getElementById("idPetitorio").value = idPetitorio;
           document.getElementById("idProducto").value = idProducto;
           document.getElementById("idCanalVenta").value = idCanalVenta;
+          document.getElementById("idClasificacion").value = idClasificacionValor;
           document.getElementById("canalVenta").value =
             canalVenta && canalVenta != "null" && canalVenta != "undefined"
               ? canalVenta
@@ -2319,6 +2344,7 @@
           const idPetitorio = document.getElementById("idPetitorio").value;
           const idCanalVenta = document.getElementById("idCanalVenta").value;
           const idProducto = document.getElementById("idProducto").value;
+          const idClasificacion = document.getElementById("idClasificacion").value;
 
           document.getElementById("actualizarProducto").innerHTML = `
         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -2347,6 +2373,7 @@
             montoDescuentoMinimo: montoDescuentoMinimo ?? null,
             porcentajeDescuentoAnterior: porcentajeDescuentoAnterior ?? null,
             montoDescuentoMinimoAnterior: montoDescuentoMinimoAnterior ?? null,
+            idClasificacionValor: idClasificacion ?? null,
           });
 
           document.getElementById("actualizarProducto").innerHTML = `
@@ -2423,7 +2450,8 @@
         sku,
         idPetitorio,
         porcentajeDescuento,
-        montoDescuentoMinimo
+        montoDescuentoMinimo,
+        idClasificacionValor = null
       }) {
         let raw = null;
         try {
@@ -2439,7 +2467,8 @@
             sku,
             idPetitorio,
             porcentajeDescuento,
-            montoDescuentoMinimo
+            montoDescuentoMinimo,
+            idClasificacionValor
           });
 
           const response = await fetch(`${API_BASE_URL}public/productos.php`, {

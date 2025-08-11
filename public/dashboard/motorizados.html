@@ -35,6 +35,17 @@
           });
 
         document
+          .getElementById('sidebar-toggle')
+          ?.addEventListener('click', () => {
+            const sidebar = document.querySelector('.sidebar')
+            if (sidebar.classList.contains('sidebar-mini')) {
+              sidebar.classList.remove('sidebar-mini')
+            } else {
+              sidebar.classList.add('sidebar-mini')
+            }
+          })
+
+        document
           .getElementById("cerrarSesion2")
           ?.addEventListener("click", () => {
             localStorage.clear();

@@ -16,10 +16,12 @@
     <script src="../config/index.js"></script>
 
     <script>
-      
-      CARGAR_COMPONENTE('aside', 'aside');
+      // Hacemos que la función devuelva una promesa
+      CARGAR_COMPONENTE('aside', 'aside').then(() => {
+        iniciarPagina();
+      });
 
-      document.addEventListener('DOMContentLoaded', () => {
+      function iniciarPagina() {
         const loader = document.querySelector('.loader');
         const color = sessionStorage.getItem("color-mode");
 
@@ -28,24 +30,26 @@
         }
 
         const link = document.getElementById('menu-principal');
-        const opcionSeleccionada = link.firstElementChild.classList.add('active');
+        if (link?.firstElementChild) {
+          link.firstElementChild.classList.add('active');
+        }
 
         document
           .getElementById("cerrarSesion")
-          .addEventListener("click", () => {
+          ?.addEventListener("click", () => {
             localStorage.clear();
             window.location.href = "../index.html";
           });
 
         document
           .getElementById("cerrarSesion2")
-          .addEventListener("click", () => {
+          ?.addEventListener("click", () => {
             localStorage.clear();
             window.location.href = "../index.html";
           });
-      });
 
-      listadoDocumentos();
+        listadoDocumentos();
+      }
 
       async function listadoDocumentos() {
         try {
@@ -64,12 +68,11 @@
         } catch (error) {
           console.log("error", error);
           localStorage.clear();
-          // Redirigir, si aplica
           window.location.href = "../index.html";
         }
       }
-
     </script>
+
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/images/favicon.ico" />

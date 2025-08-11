@@ -16,6 +16,7 @@
     <script src="../config/index.js"></script>
 
     <script>
+      let sidebarToggle = false;
       CARGAR_COMPONENTE('aside', 'aside').then(() => {
         iniciarPagina();
       });
@@ -32,6 +33,19 @@
             localStorage.clear();
             window.location.href = "../index.html";
           });
+
+        document
+          .getElementById('sidebar-toggle')
+          ?.addEventListener('click', () => {
+            if(!sidebarToggle) {
+              document.getElementById("aside").classList.add('sidebar-mini');
+              sidebarToggle = true;
+            } else {
+              document.getElementById("aside").classList.remove('sidebar-mini');
+              sidebarToggle = false;
+            }
+            
+          })
 
         document
           .getElementById("cerrarSesion2")

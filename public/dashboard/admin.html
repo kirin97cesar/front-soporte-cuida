@@ -16,7 +16,6 @@
     <script src="../config/index.js"></script>
 
     <script>
-      let sidebarToggle = false;
       CARGAR_COMPONENTE('aside', 'aside').then(() => {
         iniciarPagina();
       });
@@ -37,14 +36,12 @@
         document
           .getElementById('sidebar-toggle')
           ?.addEventListener('click', () => {
-            if(!sidebarToggle) {
-              document.getElementById("aside").classList.add('sidebar-mini');
-              sidebarToggle = true;
+            const sidebar = document.querySelector('.sidebar')
+            if (sidebar.classList.contains('sidebar-mini')) {
+              sidebar.classList.remove('sidebar-mini')
             } else {
-              document.getElementById("aside").classList.remove('sidebar-mini');
-              sidebarToggle = false;
+              sidebar.classList.add('sidebar-mini')
             }
-            
           })
 
         document

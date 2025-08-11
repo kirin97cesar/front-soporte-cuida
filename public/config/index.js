@@ -3,7 +3,7 @@
 // ===============================
 
 // Producción
-window.API_BASE_URL = 'https://backend-soporte-cuida-e4oc.onrender.com';
+window.API_BASE_URL = 'https://backend-soporte-cuida-e4oc.onrender.com/';
 
 // Desarrollo
 //window.API_BASE_URL = 'http://127.0.0.1/api/';

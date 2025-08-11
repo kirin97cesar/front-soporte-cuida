@@ -22,26 +22,21 @@
       });
 
       const iniciarPagina = () => {
-        const loader = document.querySelector('.loader');
-        const color = sessionStorage.getItem("color-mode");
-
-        if (loader && (color === "dark" || color === "light")) {
-          loader.classList.add(color);
-        }
-
         const link = document.getElementById('menu-tedef');
-        const opcionSeleccionada = link.firstElementChild.classList.add('active');
+        if (link?.firstElementChild) {
+          link.firstElementChild.classList.add('active');
+        }
 
         document
           .getElementById("cerrarSesion")
-          .addEventListener("click", () => {
+          ?.addEventListener("click", () => {
             localStorage.clear();
             window.location.href = "../index.html";
           });
 
         document
           .getElementById("cerrarSesion2")
-          .addEventListener("click", () => {
+          ?.addEventListener("click", () => {
             localStorage.clear();
             window.location.href = "../index.html";
           });

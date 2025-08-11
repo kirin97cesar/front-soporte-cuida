@@ -9,6 +9,7 @@
     <link rel="favicon" type="image/png" href="https://strapi-static-files-prod.s3.amazonaws.com/favicon_7b4f57ba1f.png">
     <link id="favicon" rel="shortcut icon" href="https://strapi-static-files-prod.s3.amazonaws.com/favicon_7b4f57ba1f.png">
     <meta name="theme-color" content="#3a57e8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- CSS -->
     <link rel="stylesheet" href="../../assets/css/core/libs.min.css" />
@@ -128,7 +129,6 @@
       // Detecta modo guardado y lo aplica al <body> o al .loader directamente
       (function() {
         const loader = document.querySelector('.loader');
-        console.log("Aaaaaa", loader)
         const color = sessionStorage.getItem("color-mode");
         if (color === "dark" || color === "light") {
           loader.classList.add(color);
@@ -155,26 +155,6 @@
         userPoolId: 'us-east-1_byqG3MxAR',
         userPoolWebClientId: '5nht571b9u5up55tki3p8oaisn'
       });
-
-      // Encriptar y guardar
-      function guardarEnLocalStorage(clave, valor, token) {
-        const encriptado = CryptoJS.AES.encrypt(valor, token).toString();
-        localStorage.setItem(clave, encriptado);
-      }
-
-      // Leer y desencriptar
-      function leerDesdeLocalStorage(clave, token) {
-        const cifrado = localStorage.getItem(clave);
-        if (!cifrado) return null;
-
-        try {
-          const bytes = CryptoJS.AES.decrypt(cifrado, token);
-          return bytes.toString(CryptoJS.enc.Utf8);
-        } catch (err) {
-          console.error("Error al desencriptar:", err);
-          return null;
-        }
-      }
 
       // Validar email
       function esCorreoValido(correo) {

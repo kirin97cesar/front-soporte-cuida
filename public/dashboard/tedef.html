@@ -27,7 +27,7 @@
           loader.classList.add(color);
         }
 
-        const link = document.getElementById('menu-agentes');
+        const link = document.getElementById('menu-tedef');
         const opcionSeleccionada = link.firstElementChild.classList.add('active');
 
         document
@@ -45,8 +45,9 @@
           });
       });
 
-    </script>
+    </script> 
 
+    <link href="../assets/css/select2.min.css" rel="stylesheet" />
     <!-- Favicon -->
     <link rel="shortcut icon" href="../assets/images/favicon.ico" />
 
@@ -75,11 +76,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
     />
-
     <link rel="stylesheet" href="../assets//css/personal.css">
-
   </head>
-  <body>
+  <body class="  ">
     <!-- loader Start -->
     <div id="loading">
       <div class="loader simple-loader">
@@ -100,11 +99,11 @@
             <a href="../dashboard/admin.html" class="navbar-brand">
               <!--Logo start-->
               <div class="logo-main">
-                  <svg width="30" height="28" class="Navbar_navbar__left_logo__icon__vXe2w" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.2815 27.3572H11.1935C6.53364 27.3342 2.2932 24.6524 0.262285 20.4404C-0.370939 19.1185 0.181103 17.53 1.50167 16.8941C2.81818 16.2582 4.40124 16.8129 5.03447 18.1348C6.17644 20.5121 8.56726 22.0262 11.1935 22.0424H11.2815C13.901 22.0248 16.2891 20.5175 17.4338 18.1511C18.0697 16.8291 19.6568 16.2784 20.9733 16.9171C22.2898 17.5557 22.8392 19.1483 22.2019 20.4702C20.1615 24.666 15.9278 27.3369 11.2815 27.3572Z" fill="#573CD6"></path>
-                    <path d="M8.07886 12.0122C6.88007 13.9092 7.43887 16.4245 9.32772 17.6314C11.2166 18.8356 13.7251 18.2741 14.9239 16.3772L17.9317 11.6577L11.0853 7.26846L8.07886 12.0122Z" fill="#FF795C"></path>
-                    <path d="M19.6813 1.28264C17.8033 0.0757207 15.3042 0.626409 14.0986 2.51255C14.0946 2.51932 14.0892 2.52879 14.0851 2.53555L11.0854 7.2685L17.9318 11.6578L20.9315 6.90047C22.1303 5.0035 21.5715 2.4882 19.6827 1.28128L19.6813 1.28264Z" fill="#573CD6"></path>
-                  </svg>
+                <svg width="30" height="28" class="Navbar_navbar__left_logo__icon__vXe2w" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11.2815 27.3572H11.1935C6.53364 27.3342 2.2932 24.6524 0.262285 20.4404C-0.370939 19.1185 0.181103 17.53 1.50167 16.8941C2.81818 16.2582 4.40124 16.8129 5.03447 18.1348C6.17644 20.5121 8.56726 22.0262 11.1935 22.0424H11.2815C13.901 22.0248 16.2891 20.5175 17.4338 18.1511C18.0697 16.8291 19.6568 16.2784 20.9733 16.9171C22.2898 17.5557 22.8392 19.1483 22.2019 20.4702C20.1615 24.666 15.9278 27.3369 11.2815 27.3572Z" fill="#573CD6"></path>
+                  <path d="M8.07886 12.0122C6.88007 13.9092 7.43887 16.4245 9.32772 17.6314C11.2166 18.8356 13.7251 18.2741 14.9239 16.3772L17.9317 11.6577L11.0853 7.26846L8.07886 12.0122Z" fill="#FF795C"></path>
+                  <path d="M19.6813 1.28264C17.8033 0.0757207 15.3042 0.626409 14.0986 2.51255C14.0946 2.51932 14.0892 2.52879 14.0851 2.53555L11.0854 7.2685L17.9318 11.6578L20.9315 6.90047C22.1303 5.0035 21.5715 2.4882 19.6827 1.28128L19.6813 1.28264Z" fill="#573CD6"></path>
+                </svg>
                 <div class="logo-mini">
                   <svg
                     class="text-primary icon-30"
@@ -334,180 +333,215 @@
             <div class="card">
               <div class="card-header d-flex justify-content-between flex-wrap">
                 <div class="header-title">
-                  <h4 class="card-title mb-0">Clientes</h4>
+                  <h4 class="card-title mb-0">Motorizado</h4>
                 </div>
-                <div class="col-sm-12">
+              </div>
+              <div class="col-sm-12">
+                <div class="m-4 col-sm-12">
                   <p>Ingresa los datos a buscar</p>
                   <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label class="form-label" for="idTipoDocumento"
-                        >Tipo Documento</label
-                      >
-                      <select class="form-select" id="idTipoDocumento" required>
-                        <option selected value="2">DNI</option>
-                        <option value="3">CE</option>
-                      </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label class="form-label" for="idNumeroDocumento"
-                        >Número de documento</label
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label" for="codigoMotorizado"
+                        >Código Motorizado</label
                       >
                       <input
                         type="text"
                         class="form-control"
-                        id="idNumeroDocumento"
+                        id="codigoMotorizado"
                         style="text-transform: uppercase"
+                        required
                       />
                       <div class="invalid-feedback">
-                        Ingresa un número de documento válido.
+                        Ingresa un código de motorizado correcto.
                       </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label" for="numeroDocumento"
+                        >Número documento</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="numeroDocumento"
+                        style="text-transform: uppercase"
+                        required
+                      />
+                      <div class="invalid-feedback">
+                        Ingresa un número de documento correcto.
+                      </div>
+                    </div>
+                    <div class="col-md-8 mb-3">
+                      <label class="form-label" for="idEmpresas">Empresa</label>
+                      <select class="form-select" id="idEmpresas" required>
+                        <option selected value="null">TODOS</option>
+                      </select>
                     </div>
                   </div>
                   <div class="form-group">
-                    <button class="btn btn-primary" id="buscarCliente">
-                      Buscar
+                    <button class="btn btn-primary" id="buscarMotorizado">
+                      Buscar Motorizado
                     </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                  <div class="header-title">
-                    <h4 class="card-title">Listado de clientes</h4>
-                  </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                  <h4 class="card-title">Listado de Motorizados</h4>
                 </div>
-
-                <div class="col-sm-12" id="cargando" style="display: none">
-                  <center>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="100"
-                      height="100"
-                      viewBox="0 0 200 200"
+              </div>
+              <div class="col-sm-12 m-4">
+                <button
+                  type="button"
+                  class="btn btn-success mx-2 mb-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalRegistrarEmpresa"
+                >
+                  Registrar Empresa
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary mb-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalRegistrarMotorizado"
+                >
+                  Registrar Motorizado
+                </button>
+              </div>
+              <div class="col-sm-12" id="cargando" style="display: none">
+                <center>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="100"
+                    height="100"
+                    viewBox="0 0 200 200"
+                  >
+                    <circle
+                      fill="#3A57E8"
+                      stroke="#3A57E8"
+                      stroke-width="30"
+                      r="15"
+                      cx="35"
+                      cy="100"
                     >
-                      <circle
-                        fill="#3A57E8"
-                        stroke="#3A57E8"
-                        stroke-width="30"
-                        r="15"
-                        cx="35"
-                        cy="100"
-                      >
-                        <animate
-                          attributeName="cx"
-                          calcMode="spline"
-                          dur="1.2"
-                          values="35;165;165;35;35"
-                          keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-                          repeatCount="indefinite"
-                          begin="0"
-                        ></animate>
-                      </circle>
-                      <circle
-                        fill="#3A57E8"
-                        stroke="#3A57E8"
-                        stroke-width="30"
-                        opacity=".8"
-                        r="15"
-                        cx="35"
-                        cy="100"
-                      >
-                        <animate
-                          attributeName="cx"
-                          calcMode="spline"
-                          dur="1.2"
-                          values="35;165;165;35;35"
-                          keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-                          repeatCount="indefinite"
-                          begin="0.05"
-                        ></animate>
-                      </circle>
-                      <circle
-                        fill="#3A57E8"
-                        stroke="#3A57E8"
-                        stroke-width="30"
-                        opacity=".6"
-                        r="15"
-                        cx="35"
-                        cy="100"
-                      >
-                        <animate
-                          attributeName="cx"
-                          calcMode="spline"
-                          dur="1.2"
-                          values="35;165;165;35;35"
-                          keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-                          repeatCount="indefinite"
-                          begin=".1"
-                        ></animate>
-                      </circle>
-                      <circle
-                        fill="#3A57E8"
-                        stroke="#3A57E8"
-                        stroke-width="30"
-                        opacity=".4"
-                        r="15"
-                        cx="35"
-                        cy="100"
-                      >
-                        <animate
-                          attributeName="cx"
-                          calcMode="spline"
-                          dur="1.2"
-                          values="35;165;165;35;35"
-                          keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-                          repeatCount="indefinite"
-                          begin=".15"
-                        ></animate>
-                      </circle>
-                      <circle
-                        fill="#3A57E8"
-                        stroke="#3A57E8"
-                        stroke-width="30"
-                        opacity=".2"
-                        r="15"
-                        cx="35"
-                        cy="100"
-                      >
-                        <animate
-                          attributeName="cx"
-                          calcMode="spline"
-                          dur="1.2"
-                          values="35;165;165;35;35"
-                          keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
-                          repeatCount="indefinite"
-                          begin=".2"
-                        ></animate>
-                      </circle>
-                    </svg>
-                  </center>
-                </div>
-
-                <div class="card-body" id="tablaDatos" style="display: block">
-                  <div class="table-responsive">
-                    <table
-                      id="datatable"
-                      class="table table-striped"
-                      data-toggle="data-table"
+                      <animate
+                        attributeName="cx"
+                        calcMode="spline"
+                        dur="1.2"
+                        values="35;165;165;35;35"
+                        keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
+                        repeatCount="indefinite"
+                        begin="0"
+                      ></animate>
+                    </circle>
+                    <circle
+                      fill="#3A57E8"
+                      stroke="#3A57E8"
+                      stroke-width="30"
+                      opacity=".8"
+                      r="15"
+                      cx="35"
+                      cy="100"
                     >
-                      <thead>
-                        <tr>
-                          <th>#Id Persona</th>
-                          <th>Nombres</th>
-                          <th>Apellidos</th>
-                          <th>Tipo Documento</th>
-                          <th>Número documento</th>
-                          <th>Opciones</th>
-                        </tr>
-                      </thead>
-                      <tbody id="bodyPersonas"></tbody>
-                    </table>
-                  </div>
+                      <animate
+                        attributeName="cx"
+                        calcMode="spline"
+                        dur="1.2"
+                        values="35;165;165;35;35"
+                        keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
+                        repeatCount="indefinite"
+                        begin="0.05"
+                      ></animate>
+                    </circle>
+                    <circle
+                      fill="#3A57E8"
+                      stroke="#3A57E8"
+                      stroke-width="30"
+                      opacity=".6"
+                      r="15"
+                      cx="35"
+                      cy="100"
+                    >
+                      <animate
+                        attributeName="cx"
+                        calcMode="spline"
+                        dur="1.2"
+                        values="35;165;165;35;35"
+                        keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
+                        repeatCount="indefinite"
+                        begin=".1"
+                      ></animate>
+                    </circle>
+                    <circle
+                      fill="#3A57E8"
+                      stroke="#3A57E8"
+                      stroke-width="30"
+                      opacity=".4"
+                      r="15"
+                      cx="35"
+                      cy="100"
+                    >
+                      <animate
+                        attributeName="cx"
+                        calcMode="spline"
+                        dur="1.2"
+                        values="35;165;165;35;35"
+                        keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
+                        repeatCount="indefinite"
+                        begin=".15"
+                      ></animate>
+                    </circle>
+                    <circle
+                      fill="#3A57E8"
+                      stroke="#3A57E8"
+                      stroke-width="30"
+                      opacity=".2"
+                      r="15"
+                      cx="35"
+                      cy="100"
+                    >
+                      <animate
+                        attributeName="cx"
+                        calcMode="spline"
+                        dur="1.2"
+                        values="35;165;165;35;35"
+                        keySplines="0 .1 .5 1;0 .1 .5 1;0 .1 .5 1;0 .1 .5 1"
+                        repeatCount="indefinite"
+                        begin=".2"
+                      ></animate>
+                    </circle>
+                  </svg>
+                </center>
+              </div>
+              <div class="card-body" id="tablaDatos" style="display: block">
+                <div class="table-responsive">
+                  <table
+                    id="datatable"
+                    class="table table-striped"
+                    data-toggle="data-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th>#Id</th>
+                        <th>Código Motorizado</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Tipo de documento</th>
+                        <th>Numero de documento</th>
+                        <th>Empresa</th>
+                        <th>Estado</th>
+                        <th>Opciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bodyProductos"></tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -526,7 +560,11 @@
           <div class="modal-content">
             <div class="modal-header">
               <input type="hidden" id="idPersona" />
-              <h5 class="modal-title" id="exampleModalLabel">Editar Persona</h5>
+              <input type="hidden" id="idMotorizado" />
+
+              <h5 class="modal-title" id="exampleModalLabel">
+                Editar Motorizado
+              </h5>
               <button
                 type="button"
                 class="btn-close"
@@ -538,6 +576,14 @@
               <div class="col-sm-12">
                 <div class="row">
                   <div class="col-md-12 mb-3">
+                    <label class="form-label" for="idEmpresaP">Empresa</label>
+                    <select
+                      class="form-select"
+                      id="idEmpresaP"
+                      required
+                    ></select>
+                  </div>
+                  <div class="col-md-6 mb-3">
                     <label class="form-label" for="tipDocumento"
                       >Tipo Documento</label
                     >
@@ -555,7 +601,8 @@
                       Ingresa un número de documento válido.
                     </div>
                   </div>
-                  <div class="col-md-612mb-3">
+                  <div class="col-md-6 mb-3" id="estadosPedido"></div>
+                  <div class="col-md-12 mb-3">
                     <label class="form-label" for="nombresP">Nombres</label>
                     <input type="text" class="form-control" id="nombresP" />
                     <div class="invalid-feedback">
@@ -563,51 +610,46 @@
                     </div>
                   </div>
                   <div class="col-md-12 mb-3">
-                    <label class="form-label" for="apellidosPaterno"
-                      >Apellido Paterno</label
-                    >
-                    <input type="text" class="form-control" id="apellidosPaterno" />
-                    <div class="invalid-feedback">
-                      Ingresa Apellido Paterno.
-                    </div>
-                  </div>
-                  <div class="col-md-12 mb-3">
-                    <label class="form-label" for="apellidosMaterno"
-                      >Apellido Materno</label
-                    >
-                    <input type="text" class="form-control" id="apellidosMaterno" />
-                    <div class="invalid-feedback">
-                      Ingresa Apellido Materno.
-                    </div>
-                  </div>
-                  <div class="col-md-12 mb-3">
-                    <label class="form-label" for="apellidosMaterno"
-                      >Apellidos Completos</label
+                    <label class="form-label" for="apellidosP"
+                      >Apellidos Paterno</label
                     >
                     <input type="text" class="form-control" id="apellidosP" />
-                    <div class="invalid-feedback">
-                      Ingresa Apellidos completos.
-                    </div>
                   </div>
+
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="apellidosM"
+                      >Apellidos Materno</label
+                    >
+                    <input type="text" class="form-control" id="apellidosM" />
+                  </div>
+
                   <div class="col-md-6 mb-3">
-                    <label class="form-label" for="tipoSolicitud">Tipo</label>
-                    <select class="form-select" id="tipoSolicitud" required>
-                      <option selected value="PEDIDO">PEDIDO</option>
-                      <option value="SOLICITUD">SOLICITUD</option>
+                    <label class="form-label" for="codigoMotorizadoP"
+                      >Código del Motorizado</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="codigoMotorizadoP"
+                    />
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="estadoP">Estado</label>
+                    <select class="form-select" id="estadoP" required>
+                      <option selected value="ACT">ACTIVO</option>
+                      <option value="INA">INACTIVO</option>
                     </select>
                   </div>
-                  <div class="col-md-6 mt-4 mb-3 form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="actualizarPedidos"
-                    />
-                    <label
-                      class="form-check-label"
-                      for="actualizarPedidos"
-                      id="labelActualizarPedidos"
-                      >Actualizar los Pedidos Asociados?</label
-                    >
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="emailP">Correo</label>
+                    <input type="email" class="form-control" id="emailP" />
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="passP">Contraseña</label>
+                    <input type="password" class="form-control" id="passP" />
                   </div>
                 </div>
               </div>
@@ -626,6 +668,186 @@
                 id="actualizarPersona"
               >
                 Actualizar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="modalRegistrarMotorizado"
+        tabindex="-1"
+        aria-labelledby="modalMotorizado"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalMotorizado">
+                Registrar Motorizado
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="idEmpresaPR">Empresa</label>
+                    <select
+                      class="form-select"
+                      id="idEmpresaPR"
+                      required
+                    ></select>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="tipDocumentoR"
+                      >Tipo Documento</label
+                    >
+                    <select
+                      class="form-select"
+                      id="tipDocumentoR"
+                      required
+                    ></select>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="numDocR"
+                      >Número de documento</label
+                    >
+                    <input type="text" class="form-control" id="numDocR" />
+                    <div class="invalid-feedback">
+                      Ingresa un número de documento válido.
+                    </div>
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="nombresPR">Nombres</label>
+                    <input type="text" class="form-control" id="nombresPR" />
+                    <div class="invalid-feedback">
+                      Ingresa Nombres completos.
+                    </div>
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="apellidosPR"
+                      >Apellidos Paterno</label
+                    >
+                    <input type="text" class="form-control" id="apellidosPR" />
+                  </div>
+
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="apellidosMR"
+                      >Apellidos Materno</label
+                    >
+                    <input type="text" class="form-control" id="apellidosMR" />
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="codigoMotorizadoPR"
+                      >Código del Motorizado</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="codigoMotorizadoPR"
+                    />
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="emailPR">Correo</label>
+                    <input type="email" class="form-control" id="emailPR" />
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label" for="passPR">Contraseña</label>
+                    <input type="password" class="form-control" id="passPR" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="registrarMotorizado"
+                disabled
+              >
+                Registrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="modal fade"
+        id="modalRegistrarEmpresa"
+        tabindex="-1"
+        aria-labelledby="modalRegistrarE"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="hidden" id="idPersona" />
+              <input type="hidden" id="idMotorizado" />
+
+              <h5 class="modal-title" id="modalRegistrarE">
+                Registrar Empresa
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="razonSocial"
+                      >Razón Social</label
+                    >
+                    <input type="text" class="form-control" id="razonSocial" />
+                    <div class="invalid-feedback">
+                      Ingresa una razón social válida.
+                    </div>
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <label class="form-label" for="numRuc">Número de RUC</label>
+                    <input type="text" class="form-control" id="numRuc" />
+                    <div class="invalid-feedback">
+                      Ingresa un número de RUC válido.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="registrarEmpresa"
+              >
+                Registrar
               </button>
             </div>
           </div>
@@ -1295,6 +1517,7 @@
     <script src="../assets/js/hope-ui.js" defer></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
       toastr.options = {
@@ -1303,6 +1526,88 @@
         timeOut: "3000",
       };
 
+      document
+        .getElementById("registrarEmpresa")
+        .addEventListener("click", async () => {
+          const razonSocial = document.getElementById("razonSocial").value;
+          const numRuc = document.getElementById("numRuc").value;
+
+          if (!razonSocial || razonSocial.trim().length == 0) {
+            toastr["error"]("Ingresa una Razón Social correcto!");
+            document.getElementById("razonSocial").classList.add("is-invalid");
+            return;
+          }
+
+          if (!numRuc || numRuc.trim().length == 0) {
+            toastr["error"]("Ingresa un número RUC correcto!");
+            document.getElementById("numRuc").classList.add("is-invalid");
+            return;
+          }
+
+          let raw = null;
+          try {
+            const myHeaders = new Headers();
+            myHeaders.append("X-Auth-Token", localStorage.getItem("token"));
+
+            raw = JSON.stringify({
+              razonSocial: razonSocial,
+              ruc: numRuc,
+            });
+
+            const requestOptions = {
+              method: "POST",
+              headers: myHeaders,
+              body: raw,
+              redirect: "follow",
+            };
+
+            document.getElementById("registrarEmpresa").innerHTML = `
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Registrando...`;
+            document.getElementById("registrarEmpresa").disabled = true;
+
+            const response = await fetch(
+              `${API_BASE_URL}public/motorizados.php`,
+              requestOptions,
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+              throw new Error(data.error || "Error al registrar empresa");
+            }
+
+            if (response.ok) {
+              document
+                .getElementById("razonSocial")
+                .classList.remove("is-invalid");
+              document.getElementById("numRuc").classList.remove("is-invalid");
+              await cargarDatosIniciales();
+            }
+
+            document.getElementById("registrarEmpresa").innerHTML = `
+              Registrar`;
+            document.getElementById("registrarEmpresa").disabled = false;
+
+            toastr["success"]("Empresa creada con éxito!");
+
+            // 1. Cierra el modal
+            const modal = bootstrap.Modal.getInstance(
+              document.getElementById("modalRegistrarEmpresa"),
+            );
+            modal.hide();
+
+            document.getElementById("razonSocial").value = "";
+            document.getElementById("numRuc").value = "";
+          } catch (error) {
+            console.log(error);
+            //localStorage.clear();
+            // Redirigir, si aplica
+            //window.location.href = "../index.html";
+          } finally {
+            await REGISTRAR_SOPORTE({ tipo: 'REGISTRAR EMPRESA MOTORIZADO', payload: raw})
+          }
+        });
 
       async function cargarDatosIniciales() {
 
@@ -1315,7 +1620,7 @@
           return;
         }
 
-        const seccionVerificada = detalle?.secciones?.find(seccion => seccion == 'AGENTES');
+        const seccionVerificada = detalle?.secciones?.find(seccion => seccion == 'TEDEF');
 
         if(!seccionVerificada) {
           localStorage.clear();
@@ -1327,10 +1632,59 @@
         cargando.style.display = "block";
         tabla.style.display = "none";
 
-        await listadoDocumentos();
+        await Promise.all([listadoEmpresas(), listadoDocumentos()]);
 
         cargando.style.display = "none";
         tabla.style.display = "block";
+      }
+
+      async function listadoEmpresas() {
+        try {
+          const myHeaders = new Headers();
+          myHeaders.append("X-Auth-Token", localStorage.getItem("token"));
+          const response = await fetch(
+            `${API_BASE_URL}public/motorizados.php`,
+            {
+              method: "GET",
+              headers: myHeaders,
+            },
+          );
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || "Error al obtener documento");
+          }
+
+          let motorizadosSelect = `<option value="null" selected>TODOS</option>
+              `;
+          let empresaSelect = "";
+
+          for (const empresa of data.empresas) {
+            motorizadosSelect += `<option value="${empresa.idTransportista}">${empresa.ruc} - ${empresa.razonSocial}</option>`;
+            empresaSelect += `<option value="${empresa.idTransportista}">${empresa.ruc} - ${empresa.razonSocial}</option>`;
+          }
+
+          document.getElementById("idEmpresas").innerHTML =
+            motorizadosSelect + " </select>";
+          document.getElementById("idEmpresaP").innerHTML = empresaSelect;
+          document.getElementById("idEmpresaPR").innerHTML = empresaSelect;
+
+          $("#idEmpresas").select2();
+
+          $("#idEmpresaP").select2({
+            dropdownParent: $("#modalEditarPersona"),
+          });
+
+          $("#idEmpresaPR").select2({
+            dropdownParent: $("#modalRegistrarMotorizado"),
+          });
+        } catch (error) {
+          console.log(error);
+          //localStorage.clear();
+          // Redirigir, si aplica
+          // window.location.href = "../index.html";
+        }
       }
 
       async function listadoDocumentos() {
@@ -1350,74 +1704,182 @@
             optionTiposDocumento += `<option ${documento.idTipoDocumentoIdentidad === 2 ? "selected" : ""} value="${documento.idTipoDocumentoIdentidad}">${documento.descripcion}</option>`;
           }
 
-          document.getElementById("idTipoDocumento").innerHTML =
-            optionTiposDocumento;
           document.getElementById("tipDocumento").innerHTML =
             optionTiposDocumento;
+          document.getElementById("tipDocumentoR").innerHTML =
+            optionTiposDocumento;
+
+          $("#tipDocumento").select2({
+            dropdownParent: $("#modalEditarPersona"),
+          });
+
+          $("#tipDocumentoR").select2({
+            dropdownParent: $("#modalRegistrarMotorizado"),
+          });
 
           if (!response.ok) {
             throw new Error(data.error || "Error al obtener documento");
           }
         } catch (error) {
-          localStorage.clear();
+          console.log("error", error);
+          //localStorage.clear();
           // Redirigir, si aplica
-          window.location.href = "../index.html";
+          //window.location.href = "../index.html";
         }
       }
 
       cargarDatosIniciales();
 
       document
-        .getElementById("idNumeroDocumento")
-        .addEventListener("input", () => {
-          document
-            .getElementById("idNumeroDocumento")
-            .classList.remove("is-invalid");
-        });
-
-      document
-        .getElementById("buscarCliente")
+        .getElementById("buscarMotorizado")
         .addEventListener("click", async (e) => {
           e.preventDefault();
-          let numeroDocumento =
-            document.getElementById("idNumeroDocumento").value;
-          let tipoDocumento = document.getElementById("idTipoDocumento").value;
+          const tipo = "PEDIDO";
+          const codigoMotorizado =
+            document.getElementById("codigoMotorizado").value;
+          const numeroDocumento =
+            document.getElementById("numeroDocumento").value;
+          let idEmpresa = document.getElementById("idEmpresas").value;
+          if (idEmpresa == "null") {
+            idEmpresa = null;
+          }
+          if (
+            !idEmpresa &&
+            (!codigoMotorizado || codigoMotorizado.trim().length == 0) &&
+            (!numeroDocumento || numeroDocumento.trim().length == 0)
+          ) {
+            if (!codigoMotorizado || codigoMotorizado.trim().length == 0) {
+              toastr["error"]("Ingresa un número pedido correcto!");
+              document
+                .getElementById("codigoMotorizado")
+                .classList.add("is-invalid");
+            }
 
-          if (!numeroDocumento || numeroDocumento.trim().length === 0) {
-            toastr["error"]("Ingresa número de documento!");
-            document
-              .getElementById("idNumeroDocumento")
-              .classList.add("is-invalid");
+            if (!numeroDocumento || numeroDocumento.trim().length == 0) {
+              toastr["error"]("Ingresa un número documento correcto!");
+              document
+                .getElementById("numeroDocumento")
+                .classList.add("is-invalid");
+            }
             return;
           }
 
-          document.getElementById("buscarCliente").innerHTML = `
-          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-          Buscando...`;
-          document.getElementById("buscarCliente").disabled = true;
-
+          document.getElementById("buscarMotorizado").innerHTML = `
+              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              Buscando...`;
+          document.getElementById("buscarMotorizado").disabled = true;
           const cargando = document.getElementById("cargando");
           const tabla = document.getElementById("tablaDatos");
           cargando.style.display = "block";
           tabla.style.display = "none";
 
-          await buscarPersona({ numeroDocumento, tipoDocumento });
-
+          await buscarMotorizadosSolicitud({
+            codigoMotorizado,
+            idEmpresa,
+            numeroDocumento,
+          });
           cargando.style.display = "none";
           tabla.style.display = "block";
-
-          document.getElementById("buscarCliente").innerHTML = `
-          Buscar`;
-          document.getElementById("buscarCliente").disabled = false;
+          document.getElementById("buscarMotorizado").innerHTML =
+            `Buscar Motorizado`;
+          document.getElementById("buscarMotorizado").disabled = false;
         });
 
-      async function buscarPersona({ numeroDocumento, tipoDocumento }) {
+      document
+        .getElementById("codigoMotorizado")
+        .addEventListener("input", () => {
+          document
+            .getElementById("codigoMotorizado")
+            .classList.remove("is-invalid");
+        });
+
+      document
+        .getElementById("codigoMotorizadoPR")
+        .addEventListener("blur", async () => {
+          const codigoMotorizado =
+            document.getElementById("codigoMotorizadoPR").value;
+          document
+            .getElementById("codigoMotorizadoPR")
+            .classList.remove("is-invalid");
+          document.getElementById("registrarMotorizado").disabled = true;
+          const motorizado = await existeMotorizado({
+            codigoMotorizado,
+            idEmpresa: "",
+            numeroDocumento: "",
+          });
+          if (motorizado) {
+            toastr["error"]("Ya existe este código de motorizado");
+            document
+              .getElementById("codigoMotorizadoPR")
+              .classList.add("is-invalid");
+            return;
+          } else {
+            toastr["success"]("Código de motorizado disponible");
+            document.getElementById("registrarMotorizado").disabled = false;
+            return;
+          }
+        });
+
+      document.getElementById("numDocR").addEventListener("blur", async () => {
+        const numeroDocumento = document.getElementById("numDocR").value;
+        document.getElementById("numDocR").classList.remove("is-invalid");
+        document.getElementById("registrarMotorizado").disabled = true;
+        const motorizado = await existeMotorizado({
+          codigoMotorizado: "",
+          idEmpresa: "",
+          numeroDocumento,
+        });
+        if (motorizado) {
+          toastr["error"]("Ya existe este numero de documento");
+          document.getElementById("numDocR").classList.add("is-invalid");
+          return;
+        } else {
+          toastr["success"]("Numero de documento disponible");
+          document.getElementById("registrarMotorizado").disabled = false;
+          return;
+        }
+      });
+
+      document
+        .getElementById("numeroDocumento")
+        .addEventListener("input", () => {
+          document
+            .getElementById("numeroDocumento")
+            .classList.remove("is-invalid");
+        });
+
+      async function existeMotorizado({
+        codigoMotorizado,
+        idEmpresa,
+        numeroDocumento,
+      }) {
+        codigoMotorizado = codigoMotorizado.trim();
         numeroDocumento = numeroDocumento.trim();
         try {
           const myHeaders = new Headers();
           myHeaders.append("X-Auth-Token", localStorage.getItem("token"));
+          let filtros = "";
+
+          if (idEmpresa != null && idEmpresa != "undefined") {
+            filtros += `&idEmpresa=${idEmpresa}`;
+          }
+
+          if (
+            (numeroDocumento.length > 0) & (numeroDocumento != null) &&
+            numeroDocumento != "undefined"
+          ) {
+            filtros += `&numeroDocumento=${numeroDocumento}`;
+          }
+
+          if (
+            (codigoMotorizado.length > 0) & (codigoMotorizado != "null") &&
+            codigoMotorizado != "undefined"
+          ) {
+            filtros += `&codigoMotorizado=${codigoMotorizado}`;
+          }
+
           const response = await fetch(
-            `${API_BASE_URL}public/persona.php?numeroDocumento=${numeroDocumento ? numeroDocumento.toUpperCase() : null}&tipoDocumento=${tipoDocumento}`,
+            `${API_BASE_URL}public/motorizados.php?busqueda=true${filtros}`,
             {
               method: "GET",
               headers: myHeaders,
@@ -1427,10 +1889,99 @@
           let data = await response.json();
 
           if (response.status == 404) {
-            toastr["error"]("No se encontró la persona!");
-            document
-              .getElementById("idNumeroDocumento")
-              .classList.add("is-invalid");
+            return false;
+          }
+
+          return true;
+        } catch (error) {
+          console.log("error", error);
+          //localStorage.clear();
+          // Redirigir, si aplica
+          //window.location.href = "../index.html";
+        }
+      }
+
+      async function buscarMotorizadosSolicitud({
+        codigoMotorizado,
+        idEmpresa,
+        numeroDocumento,
+      }) {
+        document
+          .getElementById("codigoMotorizado")
+          .classList.remove("is-invalid");
+        document
+          .getElementById("numeroDocumento")
+          .classList.remove("is-invalid");
+
+        codigoMotorizado = codigoMotorizado.trim();
+        numeroDocumento = numeroDocumento.trim();
+        try {
+          const myHeaders = new Headers();
+          myHeaders.append("X-Auth-Token", localStorage.getItem("token"));
+          let filtros = "";
+
+          if (idEmpresa != null && idEmpresa != "undefined") {
+            filtros += `&idEmpresa=${idEmpresa}`;
+          }
+
+          if (
+            (numeroDocumento.length > 0) & (numeroDocumento != null) &&
+            numeroDocumento != "undefined"
+          ) {
+            filtros += `&numeroDocumento=${numeroDocumento}`;
+          }
+
+          if (
+            (codigoMotorizado.length > 0) & (codigoMotorizado != "null") &&
+            codigoMotorizado != "undefined"
+          ) {
+            filtros += `&codigoMotorizado=${codigoMotorizado}`;
+          }
+
+          const response = await fetch(
+            `${API_BASE_URL}public/motorizados.php?busqueda=true${filtros}`,
+            {
+              method: "GET",
+              headers: myHeaders,
+            },
+          );
+
+          let data = await response.json();
+
+          if (response.status == 404) {
+            toastr["error"]("No se encontró el motorizado!");
+            console.log({ codigoMotorizado, numeroDocumento });
+            if (
+              (codigoMotorizado.length > 0) & (codigoMotorizado != "null") &&
+              codigoMotorizado != "undefined" &&
+              !(
+                (numeroDocumento.length > 0) & (numeroDocumento != "null") &&
+                numeroDocumento != "undefined"
+              )
+            ) {
+              document
+                .getElementById("codigoMotorizado")
+                .classList.add("is-invalid");
+            } else if (
+              (numeroDocumento.length > 0) & (numeroDocumento != "null") &&
+              numeroDocumento != "undefined" &&
+              !(
+                (codigoMotorizado.length > 0) & (codigoMotorizado != "null") &&
+                codigoMotorizado != "undefined"
+              )
+            ) {
+              document
+                .getElementById("numeroDocumento")
+                .classList.add("is-invalid");
+            } else {
+              document
+                .getElementById("codigoMotorizado")
+                .classList.add("is-invalid");
+              document
+                .getElementById("numeroDocumento")
+                .classList.add("is-invalid");
+            }
+
             data = [];
           }
 
@@ -1439,36 +1990,49 @@
           }
 
           if (!response.ok && ![404, 200, 201].includes(response.status)) {
-            throw new Error(data.error || "Error al obtener documento");
+            throw new Error(data.error || "Error al buscar motorizado");
           }
 
-          let registroPersona = "";
+          if (data.length > 0) {
+            document
+              .getElementById("codigoMotorizado")
+              .classList.remove("is-invalid");
+          }
 
-          if (data && data.length > 0) {
-            for (const persona of data) {
-              registroPersona += `
-                  <tr>
-                    <td>${persona.idPersona}</td>
-                    <td>${persona.nombre}</td>
-                    <td>${persona.apellidos}</td>
-                    <td>${persona.descripcion}</td>
-                    <td>${persona.numeroDocumento}</td>
-                    <td> <button class="btn btn-success" data-nombre="${persona.nombre}"  data-apellidos="${persona.apellidos}" 
-                      data-apellidos-paterno="${persona.apePaterno}"
-                      data-apellidos-materno="${persona.apeMaterno}"
-                      data-idTipoDocumentoIdentidad="${persona.idTipoDocumentoIdentidad}" data-numeroDocumento="${persona.numeroDocumento}"
-                      data-idPersona="${persona.idPersona}" id="editarPersona" data-bs-toggle="modal" data-bs-target="#modalEditarPersona">
-                      Editar</button> 
-                      </td>
+          let productoFila = "";
+
+          if (data?.motorizado && data?.motorizado.length > 0) {
+            for (const pedido of data.motorizado) {
+              productoFila += `
+                  <tr style="background-color: ${pedido.stsMotorizado != "ACT" ? "#ff00008f !important;" : "none;"}">
+                      <td>${pedido.idMotorizado}</td>
+                      <td>${pedido.codigoMotorizado}</td>
+                      <td>${pedido.nombre}</td>
+                      <td>${pedido.apellidos}</td>
+                      <td>${pedido.email}</td>
+                      <td>${pedido.tipoDocumento}</td>
+                      <td>${pedido.numeroDocumento}</td>
+                      <td>${pedido.razonSocial}</td>
+                      <td>${pedido.stsMotorizado != "ACT" ? "INACTIVO" : "ACTIVO"}</td>
+                      <td> <button class="btn btn-success" 
+                      data-tipoDocumento="${pedido.tipoDocumento}"
+                      data-idMotorizado="${pedido.idMotorizado}"
+                      data-codigoMotorizado="${pedido.codigoMotorizado}"
+                      data-nombre="${pedido.nombre}"
+                      data-apellidos="${pedido.apellidos}"
+                      data-apePaterno="${pedido.apePaterno}"
+                      data-apeMaterno="${pedido.apeMaterno}"
+                      data-email="${pedido.email}"
+                      data-numeroDocumento="${pedido.numeroDocumento}"
+                      data-razonSocial="${pedido.razonSocial}"
+                      data-stsMotorizado="${pedido.stsMotorizado}"
+                      data-idPersona="${pedido.idPersona}"
+                      data-idTransportista="${pedido.idTransportista}"
+                      data-idTipoDocumentoIdentidad="${pedido.idTipoDocumentoIdentidad}"
+                      id="editarPersona" data-bs-toggle="modal" data-bs-target="#modalEditarPersona">Editar</button> </td>
                   </tr>
                 `;
             }
-          }
-
-          if (data && data.length > 0) {
-            document
-              .getElementById("idNumeroDocumento")
-              .classList.remove("is-invalid");
           }
 
           const tabla = $("#datatable");
@@ -1479,189 +2043,468 @@
             tabla.DataTable().clear().destroy();
           }
 
-          // 2. Limpiar contenido del tbody
-          document.getElementById("bodyPersonas").innerHTML = "";
-
-          document.getElementById("bodyPersonas").innerHTML = registroPersona;
+          document.getElementById("bodyProductos").innerHTML = "";
+          document.getElementById("bodyProductos").innerHTML = productoFila;
 
           tabla.DataTable();
           tabla.show();
         } catch (error) {
-          console.log(error);
-          toastr["error"]("Sin acceso!");
-          localStorage.clear();
-          window.location.href = "../index.html";
+          console.log("error", error);
+          //localStorage.clear();
+          // Redirigir, si aplica
+          //window.location.href = "../index.html";
         }
       }
 
       document.addEventListener("DOMContentLoaded", () => {
         const modalEditar = document.getElementById("modalEditarPersona");
 
-        modalEditar.addEventListener("show.bs.modal", function (event) {
+        modalEditar.addEventListener("show.bs.modal", async function (event) {
           const button = event.relatedTarget; // Botón que abrió el modal
+          document.getElementById("estadosPedido").hidden = true;
 
           // Extrae los datos del botón
-          const idPersona = button.getAttribute("data-idPersona");
+          const tipoDocumento = button.getAttribute("data-tipoDocumento");
+          const idMotorizado = button.getAttribute("data-idMotorizado");
+          const codigoMotorizado = button.getAttribute("data-codigoMotorizado");
           const nombre = button.getAttribute("data-nombre");
-          const apellidos = button.getAttribute("data-apellidos");
-          const apellidosPaterno = button.getAttribute("data-apellidos-paterno");
-          const apellidosMaterno = button.getAttribute("data-apellidos-materno");
-
+          const apePaterno = button.getAttribute("data-apePaterno");
+          const apeMaterno = button.getAttribute("data-apeMaterno");
+          const email = button.getAttribute("data-email");
+          const numeroDocumento = button.getAttribute("data-numeroDocumento");
+          const razonSocial = button.getAttribute("data-razonSocial");
+          const stsMotorizado = button.getAttribute("data-stsMotorizado");
+          const idPersona = button.getAttribute("data-idPersona");
+          const idTransportista = button.getAttribute("data-idTransportista");
           const idTipoDocumentoIdentidad = button.getAttribute(
             "data-idTipoDocumentoIdentidad",
           );
-          const numeroDocumento = button.getAttribute("data-numeroDocumento");
-          // Inserta los datos en los campos del modal
-          document.getElementById("idPersona").value = idPersona;
-          document.getElementById("numDoc").value = numeroDocumento;
-          document.getElementById("nombresP").value = nombre;
-          document.getElementById("apellidosMaterno").value = apellidosPaterno;
-          document.getElementById("apellidosPaterno").value = apellidosMaterno;
 
-          document.getElementById("apellidosP").value = apellidos;
+          // Inserta los datos en los campos del modal
           document.getElementById("tipDocumento").value =
             idTipoDocumentoIdentidad;
+          document.getElementById("idPersona").value = idPersona;
+          document.getElementById("idMotorizado").value = idMotorizado;
+          document.getElementById("nombresP").value = nombre;
+          document.getElementById("apellidosP").value = apePaterno;
+          document.getElementById("apellidosM").value = apeMaterno;
+          document.getElementById("codigoMotorizadoP").value = codigoMotorizado;
+          document.getElementById("numDoc").value = numeroDocumento;
+          document.getElementById("idEmpresaP").value = idTransportista;
+          document.getElementById("emailP").value = email;
+          document.getElementById("estadoP").value = stsMotorizado;
+          const password = email.split("@");
+          document.getElementById("passP").value = password[0];
         });
       });
 
       document
-        .getElementById("tipoSolicitud")
-        .addEventListener("change", () => {
-          const tipoSol = document.getElementById("tipoSolicitud").value;
-          document.getElementById("labelActualizarPedidos").innerText =
-            `Actualizar ${tipoSol == "SOLICITUD" ? "las Solicitudes Asociadas?" : "los Pedidos Asociados?"}`;
-        });
+        .getElementById("registrarMotorizado")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
 
+          const idPersona = null;
+          const idMotorizado = null;
+          const tipDocumento = document.getElementById("tipDocumentoR").value;
+          const nombresP = document.getElementById("nombresPR").value;
+          const apellidosP = document.getElementById("apellidosPR").value;
+          const apellidosM = document.getElementById("apellidosMR").value;
+          const codigoMotorizadoP =
+            document.getElementById("codigoMotorizadoPR").value;
+          const numDoc = document.getElementById("numDocR").value;
+          const idEmpresaP = document.getElementById("idEmpresaPR").value;
+          const emailP = document.getElementById("emailPR").value;
+          const passP = document.getElementById("passPR").value;
+
+          if (
+            !numDoc ||
+            numDoc.trim().length == 0 ||
+            numDoc == "null" ||
+            numDoc == "undefined"
+          ) {
+            document.getElementById("numDocR").classList.add("is-invalid");
+            toastr["error"]("Numero de documento inválido!");
+            return;
+          }
+
+          if (
+            !nombresP ||
+            nombresP.trim().length == 0 ||
+            nombresP == "null" ||
+            nombresP == "undefined"
+          ) {
+            document.getElementById("nombresPR").classList.add("is-invalid");
+            document.getElementById("numDocR").classList.remove("is-invalid");
+            toastr["error"]("Nombres inválidos!");
+            return;
+          }
+
+          if (
+            !apellidosP ||
+            (apellidosP.trim().length == 0) & (apellidosP == "null") ||
+            apellidosP == "undefined"
+          ) {
+            document.getElementById("apellidosPR").classList.add("is-invalid");
+            document.getElementById("nombresPR").classList.remove("is-invalid");
+            toastr["error"]("Apellido inválido!");
+            return;
+          }
+
+          if (
+            !codigoMotorizadoP ||
+            (codigoMotorizadoP.trim().length == 0) &
+              (codigoMotorizadoP == "null") ||
+            codigoMotorizadoP == "undefined"
+          ) {
+            document
+              .getElementById("codigoMotorizadoPR")
+              .classList.add("is-invalid");
+            document
+              .getElementById("apellidosPR")
+              .classList.remove("is-invalid");
+            toastr["error"]("Codigo Motorizado inválido!");
+            return;
+          }
+
+          if (
+            !emailP ||
+            (emailP.trim().length == 0) & (emailP == "null") ||
+            emailP == "undefined"
+          ) {
+            document.getElementById("emailPR").classList.add("is-invalid");
+            document
+              .getElementById("apellidosPR")
+              .classList.remove("is-invalid");
+            toastr["error"]("Correo inválido!");
+            return;
+          }
+
+          if (
+            !passP ||
+            (passP.trim().length == 0) & (passP == "null") ||
+            passP == "undefined"
+          ) {
+            document.getElementById("passPR").classList.add("is-invalid");
+            document.getElementById("emailPR").classList.remove("is-invalid");
+            toastr["error"]("Contraseña inválida!");
+            return;
+          }
+
+          document.getElementById("emailPR").classList.remove("is-invalid");
+          document.getElementById("apellidosPR").classList.remove("is-invalid");
+          document.getElementById("passPR").classList.remove("is-invalid");
+          document
+            .getElementById("codigoMotorizadoPR")
+            .classList.remove("is-invalid");
+          document.getElementById("nombresPR").classList.remove("is-invalid");
+          document.getElementById("numDocR").classList.remove("is-invalid");
+
+          document.getElementById("registrarMotorizado").innerHTML = `
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Registrando...`;
+          document.getElementById("registrarMotorizado").disabled = true;
+
+          const cargando = document.getElementById("cargando");
+          const tabla = document.getElementById("tablaDatos");
+          cargando.style.display = "block";
+          tabla.style.display = "none";
+
+          const status = await actualizarMotorizado({
+            tipDocumento,
+            idPersona:
+              idPersona && idPersona != "undefined" && idPersona != "null"
+                ? idPersona
+                : null,
+            idMotorizado:
+              idMotorizado &&
+              idMotorizado != "undefined" &&
+              idMotorizado != "null"
+                ? idMotorizado
+                : null,
+            nombresP:
+              nombresP &&
+              nombresP != "undefined" &&
+              nombresP != "null" &&
+              nombresP.trim().length > 0
+                ? nombresP.trim()
+                : null,
+            apellidosP:
+              apellidosP &&
+              apellidosP != "undefined" &&
+              apellidosP != "null" &&
+              apellidosP.trim().length > 0
+                ? apellidosP.trim()
+                : null,
+            apellidosM:
+              apellidosM &&
+              apellidosM != "undefined" &&
+              apellidosM != "null" &&
+              apellidosM.trim().length > 0
+                ? apellidosM.trim()
+                : null,
+            codigoMotorizadoP:
+              codigoMotorizadoP &&
+              codigoMotorizadoP != "undefined" &&
+              codigoMotorizadoP != "null" &&
+              codigoMotorizadoP.trim().length > 0
+                ? codigoMotorizadoP.trim()
+                : null,
+            numDoc:
+              numDoc &&
+              numDoc != "undefined" &&
+              numDoc != "null" &&
+              numDoc.trim().length > 0
+                ? numDoc.trim()
+                : null,
+            idEmpresaP,
+            emailP:
+              emailP &&
+              emailP != "undefined" &&
+              emailP != "null" &&
+              emailP.trim().length > 0
+                ? emailP.trim()
+                : null,
+            estadoP: "ACT",
+            passP:
+              passP &&
+              passP != "undefined" &&
+              passP != "null" &&
+              passP.trim().length > 0
+                ? passP.trim()
+                : null,
+          });
+
+          if (status != false) {
+            document.getElementById("tipDocumentoR").value = "2";
+            document.getElementById("nombresPR").value = "";
+            document.getElementById("apellidosPR").value = "";
+            document.getElementById("apellidosMR").value = "";
+            document.getElementById("codigoMotorizadoPR").value = "";
+            document.getElementById("numDocR").value = "";
+            document.getElementById("emailPR").value = "";
+            document.getElementById("passPR").value = "";
+          }
+
+          document.getElementById("registrarMotorizado").innerHTML = `
+          Registrar`;
+          document.getElementById("registrarMotorizado").disabled = false;
+
+          cargando.style.display = "none";
+          tabla.style.display = "block";
+        });
       document
         .getElementById("actualizarPersona")
         .addEventListener("click", async (e) => {
           e.preventDefault();
+
+          const tipDocumento = document.getElementById("tipDocumento").value;
+          const idPersona = document.getElementById("idPersona").value;
+          const idMotorizado = document.getElementById("idMotorizado").value;
+          const nombresP = document.getElementById("nombresP").value;
+          const apellidosP = document.getElementById("apellidosP").value;
+          const apellidosM = document.getElementById("apellidosM").value;
+          const codigoMotorizadoP =
+            document.getElementById("codigoMotorizadoP").value;
+          const numDoc = document.getElementById("numDoc").value;
+          const idEmpresaP = document.getElementById("idEmpresaP").value;
+          const emailP = document.getElementById("emailP").value;
+          const estadoP = document.getElementById("estadoP").value;
+          const passP = document.getElementById("passP").value;
+
           document.getElementById("actualizarPersona").innerHTML = `
           <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
           Actualizando...`;
           document.getElementById("actualizarPersona").disabled = true;
-          const idPersona = document.getElementById("idPersona").value;
-          const numeroDocumento = document.getElementById("numDoc").value;
-          const nombrePersona = document.getElementById("nombresP").value;
-          const apellidosPersona = document.getElementById("apellidosP").value;
-          const apellidosMaterno = document.getElementById("apellidosMaterno").value;
-          const apellidosPaterno = document.getElementById("apellidosPaterno").value;
 
-          const idTipoDocumento = document.getElementById("tipDocumento").value;
-          const tipo = document.getElementById("tipoSolicitud").value;
-          const aceptarActualizarAsociados =
-            document.getElementById("actualizarPedidos").checked;
+          const cargando = document.getElementById("cargando");
+          const tabla = document.getElementById("tablaDatos");
+          cargando.style.display = "block";
+          tabla.style.display = "none";
 
-          await actualizarPersona({
-            nombre: nombrePersona &&
-              nombrePersona != "undefined" &&
-              nombrePersona != "null"
-                ? nombrePersona
+          await actualizarMotorizado({
+            tipDocumento,
+            idPersona:
+              idPersona && idPersona != "undefined" && idPersona != "null"
+                ? idPersona
                 : null,
-            apellidos: apellidosPersona &&
-              apellidosPersona != "undefined" &&
-              apellidosPersona != "null"
-                ? apellidosPersona
+            idMotorizado:
+              idMotorizado &&
+              idMotorizado != "undefined" &&
+              idMotorizado != "null"
+                ? idMotorizado
                 : null,
-            apellidosMaterno: apellidosMaterno &&
-              apellidosMaterno != "undefined" &&
-              apellidosMaterno != "null"
-                ? apellidosMaterno
+            nombresP:
+              nombresP &&
+              nombresP != "undefined" &&
+              nombresP != "null" &&
+              nombresP.trim().length > 0
+                ? nombresP.trim()
                 : null,
-            apellidosPaterno: apellidosPaterno &&
-              apellidosPaterno != "undefined" &&
-              apellidosPaterno != "null"
-                ? apellidosPaterno
+            apellidosP:
+              apellidosP &&
+              apellidosP != "undefined" &&
+              apellidosP != "null" &&
+              apellidosP.trim().length > 0
+                ? apellidosP.trim()
                 : null,
-            idTipoDocumentoIdentidad: idTipoDocumento,
-            numeroDocumento: numeroDocumento &&
-              numeroDocumento != "undefined" &&
-              numeroDocumento != "null"
-                ? numeroDocumento
+            apellidosM:
+              apellidosM &&
+              apellidosM != "undefined" &&
+              apellidosM != "null" &&
+              apellidosM.trim().length > 0
+                ? apellidosM.trim()
                 : null,
-            idPersona,
-            pedidosAsociados: aceptarActualizarAsociados ? 1 : 0,
-            tipo,
+            codigoMotorizadoP:
+              codigoMotorizadoP &&
+              codigoMotorizadoP != "undefined" &&
+              codigoMotorizadoP != "null" &&
+              codigoMotorizadoP.trim().length > 0
+                ? codigoMotorizadoP.trim()
+                : null,
+            numDoc:
+              numDoc &&
+              numDoc != "undefined" &&
+              numDoc != "null" &&
+              numDoc.trim().length > 0
+                ? numDoc.trim()
+                : null,
+            idEmpresaP,
+            emailP:
+              emailP &&
+              emailP != "undefined" &&
+              emailP != "null" &&
+              emailP.trim().length > 0
+                ? emailP.trim()
+                : null,
+            estadoP,
+            passP:
+              passP &&
+              passP != "undefined" &&
+              passP != "null" &&
+              passP.trim().length > 0
+                ? passP.trim()
+                : null,
           });
 
           document.getElementById("actualizarPersona").innerHTML = `
-        Actualizar`;
+          Actualizar`;
           document.getElementById("actualizarPersona").disabled = false;
+
+          cargando.style.display = "none";
+          tabla.style.display = "block";
         });
 
-      async function actualizarPersona({
-        nombre,
-        apellidos,
-        apellidosPaterno,
-        apellidosMaterno,
-        idTipoDocumentoIdentidad,
-        numeroDocumento,
+      async function actualizarMotorizado({
+        tipDocumento,
         idPersona,
-        pedidosAsociados,
-        tipo,
+        idMotorizado,
+        nombresP,
+        apellidosP,
+        apellidosM,
+        codigoMotorizadoP,
+        numDoc,
+        idEmpresaP,
+        emailP,
+        estadoP,
+        passP,
       }) {
         let raw = null;
         try {
           const myHeaders = new Headers();
           myHeaders.append("Content-Type", "application/json");
-          myHeaders.append("X-Auth-Token", localStorage.getItem("token"));
-
           raw = JSON.stringify({
-            nombre,
-            apellidos,
-            apellidosPaterno,
-            apellidosMaterno,
-            idTipoDocumentoIdentidad,
-            numeroDocumento,
-            idPersona,
-            pedidosAsociados,
-            tipo,
+            request: {
+              trace: {
+                channelId: "45",
+                consumerId: "WEB",
+                moduleId: "api-ventas-business",
+                serviceId: "API-VENTAS",
+                traceId: "f4025364-c66e-4648-830d-68cb7d8d20fe",
+                timestamp: "1729746595535",
+              },
+              payload: {
+                listadoUsuarios: [
+                  {
+                    usuarioLogin: emailP,
+                    email: emailP,
+                    tipo: "MOTO",
+                    activo: estadoP == "ACT" ? "1" : "0",
+                    password: passP,
+                    apePaterno: apellidosP,
+                    apeMaterno: apellidosM,
+                    nombre: nombresP,
+                    idPersona: idPersona,
+                    numeroDocumento: numDoc,
+                    idTipoDocumentoIdentidad: tipDocumento,
+                    codigoMotorizado: codigoMotorizadoP,
+                    idTransportista: idEmpresaP,
+                  },
+                ],
+              },
+            },
           });
 
-          const response = await fetch(`${API_BASE_URL}public/persona.php`, {
-            method: "POST",
-            headers: myHeaders,
-            body: raw,
-            redirect: "follow",
-          });
+          const response = await fetch(
+            `https://8jr1sgtyj7.execute-api.us-east-1.amazonaws.com/stgn/pbi-v2/api/v1/crear/usuarios-cognito`,
+            {
+              method: "POST",
+              headers: myHeaders,
+              body: raw,
+              redirect: "follow",
+            },
+          );
 
           const data = await response.json();
-          console.log("data", data);
+
+          if (data.response.payload.errores.length > 0) {
+            toastr["error"](
+              "No se pudo crear el motorizado!" +
+                data?.response?.payload?.errores.toString(),
+            );
+            return false;
+          }
 
           if (!response.ok) {
             throw new Error(data.error || "Error al actualizar persona");
           }
 
-          toastr["success"]("Datos actualizados con éxito!");
-
+          if (response.ok) {
+            toastr["success"]("Datos actualizados con éxito!");
+          }
           // 1. Cierra el modal
           const modal = bootstrap.Modal.getInstance(
             document.getElementById("modalEditarPersona"),
           );
-          modal.hide();
+          if (modal) {
+            modal.hide();
+          }
+
+          const modal2 = bootstrap.Modal.getInstance(
+            document.getElementById("modalRegistrarMotorizado"),
+          );
+          if (modal2) {
+            modal2.hide();
+          }
 
           // 2. Refresca los resultados
-          document.getElementById("idNumeroDocumento").value = numeroDocumento;
-          document.getElementById("idTipoDocumento").value =
-            idTipoDocumentoIdentidad;
-          const cargando = document.getElementById("cargando");
-          const tabla = document.getElementById("tablaDatos");
-          cargando.style.display = "block";
-          tabla.style.display = "none";
-          await buscarPersona({
-            numeroDocumento,
-            tipoDocumento: idTipoDocumentoIdentidad,
+
+          document.getElementById("codigoMotorizado").value = codigoMotorizadoP;
+          document.getElementById("idEmpresas").value = idEmpresaP;
+          document.getElementById("numeroDocumento").value = numDoc;
+
+          await buscarMotorizadosSolicitud({
+            codigoMotorizado: codigoMotorizadoP,
+            idEmpresa: idEmpresaP,
+            numeroDocumento: numDoc,
           });
-          cargando.style.display = "none";
-          tabla.style.display = "block";
         } catch (error) {
-          console.log("error");
+          console.log("error", error);
 
           //localStorage.clear();
           // Redirigir, si aplica
           //window.location.href = "../index.html";
         } finally {
-          await REGISTRAR_SOPORTE({ tipo: 'ACTUALIZACION PERSONA', payload: raw })
+          await REGISTRAR_SOPORTE({ tipo: 'REGISTRO/ACTUALIZACION MOTORIZADO', payload: raw });
         }
       }
     </script>

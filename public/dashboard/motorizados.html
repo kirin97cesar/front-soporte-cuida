@@ -8,7 +8,44 @@
     />
     <link rel="icon" type="image/x-icon" href="../favicon.ico" />
     <meta name="theme-color" content="#3a57e8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>Cuida Salud | Principal</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="../config/index.js"></script>
+
+    <script>
+      
+      CARGAR_COMPONENTE('aside', 'aside');
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const loader = document.querySelector('.loader');
+        const color = sessionStorage.getItem("color-mode");
+
+        if (loader && (color === "dark" || color === "light")) {
+          loader.classList.add(color);
+        }
+
+        const link = document.getElementById('menu-motorizado');
+        const opcionSeleccionada = link.firstElementChild.classList.add('active');
+
+        document
+          .getElementById("cerrarSesion")
+          .addEventListener("click", () => {
+            localStorage.clear();
+            window.location.href = "../index.html";
+          });
+
+        document
+          .getElementById("cerrarSesion2")
+          .addEventListener("click", () => {
+            localStorage.clear();
+            window.location.href = "../index.html";
+          });
+      });
+
+    </script> 
 
     <link href="../assets/css/select2.min.css" rel="stylesheet" />
     <!-- Favicon -->
@@ -50,415 +87,9 @@
     </div>
     <!-- loader END -->
 
-    <aside
+    <aside id="aside"
       class="sidebar sidebar-default sidebar-white sidebar-base navs-rounded-all"
     >
-      <div
-        class="sidebar-header d-flex align-items-center justify-content-start"
-      >
-        <a href="../dashboard/admin.html" class="navbar-brand">
-          <!--Logo start-->
-          <div class="logo-main">
-            <svg width="30" height="28" class="Navbar_navbar__left_logo__icon__vXe2w" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11.2815 27.3572H11.1935C6.53364 27.3342 2.2932 24.6524 0.262285 20.4404C-0.370939 19.1185 0.181103 17.53 1.50167 16.8941C2.81818 16.2582 4.40124 16.8129 5.03447 18.1348C6.17644 20.5121 8.56726 22.0262 11.1935 22.0424H11.2815C13.901 22.0248 16.2891 20.5175 17.4338 18.1511C18.0697 16.8291 19.6568 16.2784 20.9733 16.9171C22.2898 17.5557 22.8392 19.1483 22.2019 20.4702C20.1615 24.666 15.9278 27.3369 11.2815 27.3572Z" fill="#573CD6"></path>
-              <path d="M8.07886 12.0122C6.88007 13.9092 7.43887 16.4245 9.32772 17.6314C11.2166 18.8356 13.7251 18.2741 14.9239 16.3772L17.9317 11.6577L11.0853 7.26846L8.07886 12.0122Z" fill="#FF795C"></path>
-              <path d="M19.6813 1.28264C17.8033 0.0757207 15.3042 0.626409 14.0986 2.51255C14.0946 2.51932 14.0892 2.52879 14.0851 2.53555L11.0854 7.2685L17.9318 11.6578L20.9315 6.90047C22.1303 5.0035 21.5715 2.4882 19.6827 1.28128L19.6813 1.28264Z" fill="#573CD6"></path>
-            </svg>
-          </div>
-          <!--logo End-->
-
-          <h4 class="logo-title">Cuida Salud</h4>
-        </a>
-        <div class="sidebar-toggle" data-toggle="sidebar" data-active="true">
-          <i class="icon">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.25 12.2744L19.25 12.2744"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-              <path
-                d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </svg>
-          </i>
-        </div>
-      </div>
-      <div class="sidebar-body pt-0 data-scrollbar">
-        <div class="sidebar-list">
-          <!-- Sidebar Menu Start -->
-          <ul class="navbar-nav iq-main-menu" id="sidebar-menu">
-            <li class="nav-item static-item">
-              <a class="nav-link static-item disabled" href="#" tabindex="-1">
-                <span class="default-icon">Inicio</span>
-                <span class="mini-icon">INICIO</span>
-              </a>
-            </li>
-            <li class="nav-item" id="menu-principal" style="display: none;">
-              <a
-                class="nav-link"
-                aria-current="page"
-                href="../dashboard/admin.html"
-              >
-                <i class="icon">
-                  <svg
-                    class="icon-24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.15722 20.7714V17.7047C9.1572 16.9246 9.79312 16.2908 10.581 16.2856H13.4671C14.2587 16.2856 14.9005 16.9209 14.9005 17.7047V17.7047V20.7809C14.9003 21.4432 15.4343 21.9845 16.103 22H18.0271C19.9451 22 21.5 20.4607 21.5 18.5618V18.5618V9.83784C21.4898 9.09083 21.1355 8.38935 20.538 7.93303L13.9577 2.6853C12.8049 1.77157 11.1662 1.77157 10.0134 2.6853L3.46203 7.94256C2.86226 8.39702 2.50739 9.09967 2.5 9.84736V18.5618C2.5 20.4607 4.05488 22 5.97291 22H7.89696C8.58235 22 9.13797 21.4499 9.13797 20.7714V20.7714"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </i>
-                <span class="item-name">Principal</span>
-              </a>
-            </li>
-            <li><hr class="hr-horizontal" /></li>
-            <li class="nav-item static-item">
-              <a class="nav-link static-item disabled" href="#" tabindex="-1">
-                <span class="default-icon">Módulos</span>
-                <span class="mini-icon">MODULO</span>
-              </a>
-            </li>
-            <li class="nav-item" id="menu-producto" style="display: none;">
-              <a
-                class="nav-link"
-                href="../dashboard/productos.html"
-                role="button"
-              >
-                <i class="icon">
-                  <svg
-                    class="icon-24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2.75 3.25L4.83 3.61L5.793 15.083C5.87 16.02 6.653 16.739 7.593 16.736H18.502C19.399 16.738 20.16 16.078 20.287 15.19L21.236 8.632C21.342 7.899 20.833 7.219 20.101 7.113C20.037 7.104 5.164 7.099 5.164 7.099"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M14.125 10.7949H16.898"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M7.15435 20.2026C7.45535 20.2026 7.69835 20.4466 7.69835 20.7466C7.69835 21.0476 7.45535 21.2916 7.15435 21.2916C6.85335 21.2916 6.61035 21.0476 6.61035 20.7466C6.61035 20.4466 6.85335 20.2026 7.15435 20.2026Z"
-                      fill="currentColor"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M18.4346 20.2026C18.7356 20.2026 18.9796 20.4466 18.9796 20.7466C18.9796 21.0476 18.7356 21.2916 18.4346 21.2916C18.1336 21.2916 17.8906 21.0476 17.8906 20.7466C17.8906 20.4466 18.1336 20.2026 18.4346 20.2026Z"
-                      fill="currentColor"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </i>
-                <span class="item-name">Productos</span>
-              </a>
-            </li>
-
-            <li class="nav-item" id="menu-cliente" style="display: none;">
-              <a
-                class="nav-link"
-                href="../dashboard/clientes.html"
-                role="button"
-              >
-                <i class="icon">
-                  <svg
-                    class="icon-24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M17.8877 10.8967C19.2827 10.7007 20.3567 9.50473 20.3597 8.05573C20.3597 6.62773 19.3187 5.44373 17.9537 5.21973"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M19.7285 14.2505C21.0795 14.4525 22.0225 14.9255 22.0225 15.9005C22.0225 16.5715 21.5785 17.0075 20.8605 17.2815"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M11.8867 14.6638C8.67273 14.6638 5.92773 15.1508 5.92773 17.0958C5.92773 19.0398 8.65573 19.5408 11.8867 19.5408C15.1007 19.5408 17.8447 19.0588 17.8447 17.1128C17.8447 15.1668 15.1177 14.6638 11.8867 14.6638Z"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M11.8869 11.888C13.9959 11.888 15.7059 10.179 15.7059 8.069C15.7059 5.96 13.9959 4.25 11.8869 4.25C9.7779 4.25 8.0679 5.96 8.0679 8.069C8.0599 10.171 9.7569 11.881 11.8589 11.888H11.8869Z"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M5.88509 10.8967C4.48909 10.7007 3.41609 9.50473 3.41309 8.05573C3.41309 6.62773 4.45409 5.44373 5.81909 5.21973"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M4.044 14.2505C2.693 14.4525 1.75 14.9255 1.75 15.9005C1.75 16.5715 2.194 17.0075 2.912 17.2815"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </i>
-                <span class="item-name">Clientes</span>
-              </a>
-            </li>
-
-            <li class="nav-item" id="menu-pedido" style="display: none;">
-              <a
-                class="nav-link"
-                href="../dashboard/pedidos.html"
-                role="button"
-              >
-                <i class="icon">
-                  <svg
-                    class="icon-24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M16.5139 21.5H8.16604C5.09968 21.5 2.74727 20.3925 3.41547 15.9348L4.1935 9.89363C4.6054 7.66937 6.02416 6.81812 7.26901 6.81812H17.4475C18.7107 6.81812 20.047 7.73345 20.523 9.89363L21.3011 15.9348C21.8686 19.8891 19.5802 21.5 16.5139 21.5Z"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M16.6512 6.59848C16.6512 4.21241 14.7169 2.27812 12.3309 2.27812V2.27812C11.1819 2.27325 10.0782 2.72628 9.26406 3.53703C8.44987 4.34778 7.99218 5.44947 7.99219 6.59848H7.99219"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M15.2965 11.102H15.2507"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M9.4659 11.102H9.42013"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </i>
-                <span class="item-name">Pedidos/Solicitudes</span>
-              </a>
-            </li>
-
-            <li class="nav-item" id="menu-seguimiento" style="display: none;">
-              <a
-                class="nav-link"
-                href="../dashboard/seguimientos.html"
-                role="button"
-              >
-                <i class="icon">
-                  <svg
-                    class="icon-24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M15.8325 8.17463L10.109 13.9592L3.59944 9.88767C2.66675 9.30414 2.86077 7.88744 3.91572 7.57893L19.3712 3.05277C20.3373 2.76963 21.2326 3.67283 20.9456 4.642L16.3731 20.0868C16.0598 21.1432 14.6512 21.332 14.0732 20.3953L10.106 13.9602"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </i>
-                <span class="item-name">Seguimientos</span>
-              </a>
-            </li>
-
-            <li class="nav-item" id="menu-motorizado" style="display: none;">
-              <a
-                class="nav-link active"
-                href="../dashboard/motorizados.html"
-                role="button"
-              >
-                <i class="icon">
-                  <svg
-                    class="icon-24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M9.87651 15.2063C6.03251 15.2063 2.74951 15.7873 2.74951 18.1153C2.74951 20.4433 6.01251 21.0453 9.87651 21.0453C13.7215 21.0453 17.0035 20.4633 17.0035 18.1363C17.0035 15.8093 13.7415 15.2063 9.87651 15.2063Z"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M9.8766 11.886C12.3996 11.886 14.4446 9.841 14.4446 7.318C14.4446 4.795 12.3996 2.75 9.8766 2.75C7.3546 2.75 5.3096 4.795 5.3096 7.318C5.3006 9.832 7.3306 11.877 9.8456 11.886H9.8766Z"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M19.2036 8.66919V12.6792"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M21.2497 10.6741H17.1597"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </i>
-                <span class="item-name">Motorizados</span>
-              </a>
-            </li>
-
-            <li class="nav-item" id="menu-agentes" style="display: none;">
-              <a
-                class="nav-link"
-                href="../dashboard/agentes.html"
-                role="button"
-              >
-                <i class="icon">
-                  <svg
-                    class="icon-24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M2.87187 11.5983C1.79887 8.24832 3.05287 4.41932 6.56987 3.28632C8.41987 2.68932 10.4619 3.04132 11.9999 4.19832C13.4549 3.07332 15.5719 2.69332 17.4199 3.28632C20.9369 4.41932 22.1989 8.24832 21.1269 11.5983C19.4569 16.9083 11.9999 20.9983 11.9999 20.9983C11.9999 20.9983 4.59787 16.9703 2.87187 11.5983Z"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                    <path
-                      d="M16 6.69995C17.07 7.04595 17.826 8.00095 17.917 9.12195"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </i>
-                <span class="item-name">Agentes</span>
-              </a>
-            </li>
-
-            <li class="nav-item" id="menu-esquemas" style="display: none;">
-              <a
-                class="nav-link"
-                href="../dashboard/esquemas.html"
-                role="button"
-              >
-                <i class="icon">
-                  <svg
-                    class="icon-24"
-                    width="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M11.5317 12.4724C15.5208 16.4604 16.4258 11.8467 18.9656 14.3848C21.4143 16.8328 22.8216 17.3232 19.7192 20.4247C19.3306 20.737 16.8616 24.4943 8.1846 15.8197C-0.493478 7.144 3.26158 4.67244 3.57397 4.28395C6.68387 1.17385 7.16586 2.58938 9.61449 5.03733C12.1544 7.5765 7.54266 8.48441 11.5317 12.4724Z"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
-                  </svg>
-                </i>
-                <span class="item-name">Esquemas</span>
-              </a>
-            </li>
-
-            <li><hr class="hr-horizontal" /></li>
-          </ul>
-          <!-- Sidebar Menu End -->
-        </div>
-      </div>
-      <div class="sidebar-footer"></div>
     </aside>
     <main class="main-content">
       <div class="position-relative iq-banner">
@@ -1847,7 +1478,6 @@
       // Detecta modo guardado y lo aplica al <body> o al .loader directamente
       (function() {
         const loader = document.querySelector('.loader');
-        console.log("Aaaaaa", loader)
         const color = sessionStorage.getItem("color-mode");
         if (color === "dark" || color === "light") {
           loader.classList.add(color);
@@ -1887,8 +1517,6 @@
     <script src="../assets/js/hope-ui.js" defer></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-    <script src="../config/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
@@ -1897,26 +1525,6 @@
         positionClass: "toast-top-right",
         timeOut: "3000",
       };
-
-      // Encriptar y guardar
-      function guardarEnLocalStorage(clave, valor, token) {
-        const encriptado = CryptoJS.AES.encrypt(valor, token).toString();
-        localStorage.setItem(clave, encriptado);
-      }
-
-      // Leer y desencriptar
-      function leerDesdeLocalStorage(clave, token) {
-        const cifrado = localStorage.getItem(clave);
-        if (!cifrado) return null;
-
-        try {
-          const bytes = CryptoJS.AES.decrypt(cifrado, token);
-          return bytes.toString(CryptoJS.enc.Utf8);
-        } catch (err) {
-          console.error("Error al desencriptar:", err);
-          return null;
-        }
-      }
 
       document
         .getElementById("registrarEmpresa")
@@ -2002,15 +1610,6 @@
         });
 
       async function cargarDatosIniciales() {
-        const informacionUser = leerDesdeLocalStorage(
-          "user",
-          localStorage.getItem("token"),
-        );
-        if (informacionUser) {
-          const jsonInfo = JSON.parse(informacionUser);
-          document.getElementById("userEmail").innerText = jsonInfo.email;
-          document.getElementById("avatarInicial").innerText = jsonInfo.email[0].toUpperCase();
-        }
 
         const info = localStorage.getItem('detalle');
         const detalle = JSON.parse(info);
@@ -2021,60 +1620,12 @@
           return;
         }
 
-        for (const seccion of detalle.secciones) {
-          if(seccion == 'PRINCIPAL') {
-            document.getElementById('menu-principal').style.display = 'block';
-          }
-
-          if(seccion == 'PRODUCTOS') {
-            document.getElementById('menu-producto').style.display = 'block';
-          }
-
-          if(seccion == 'AGENTES') {
-            document.getElementById('menu-agentes').style.display = 'block';
-          }
-
-          if(seccion == 'MOTORIZADOS') {
-            document.getElementById('menu-motorizado').style.display = 'block';
-          }
-          
-          if(seccion == 'SEGUIMIENTOS') {
-            document.getElementById('menu-seguimiento').style.display = 'block';
-          }
-
-          if(seccion == 'PEDIDOS/SOLICITUDES') {
-            document.getElementById('menu-pedido').style.display = 'block';
-          }
-
-          if(seccion == 'ESQUEMAS') {
-            document.getElementById('menu-esquemas').style.display = 'block';
-          }
-
-          if(seccion == 'CLIENTES') {
-            document.getElementById('menu-cliente').style.display = 'block';
-          }
-        }
-
         const seccionVerificada = detalle?.secciones?.find(seccion => seccion == 'MOTORIZADOS');
 
         if(!seccionVerificada) {
           localStorage.clear();
           window.location.href = "../index.html";
         }
-
-        document
-          .getElementById("cerrarSesion")
-          .addEventListener("click", () => {
-            localStorage.clear();
-            window.location.href = "../index.html";
-          });
-
-        document
-          .getElementById("cerrarSesion2")
-          .addEventListener("click", () => {
-            localStorage.clear();
-            window.location.href = "../index.html";
-          });
 
         const cargando = document.getElementById("cargando");
         const tabla = document.getElementById("tablaDatos");

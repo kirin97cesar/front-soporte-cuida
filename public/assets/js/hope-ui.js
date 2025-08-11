@@ -307,10 +307,8 @@ const resizePlugins = () => {
 -----------------------------------------------------------------------*/
 const loaderInit = () => {
   const loader = document.querySelector('.loader');
-  console.log("Cargando loader:", loader);
 
   const color = sessionStorage.getItem("color-mode"); // "light" o "dark"
-  console.log("Modo de color:", color);
 
   if (!loader) return; // seguridad: evita error si no existe
 

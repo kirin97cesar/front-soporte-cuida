@@ -1392,8 +1392,8 @@
           let periodosTabla = "";
 
           let estadosPedidoTabla = `
-              <label class="form-label" for="estadosPedido">Estados</label>
-              <select class="form-select" id="estadosPedido" required>
+              <label class="form-label" for="estadosPedidoP">Estados</label>
+              <select class="form-select" id="estadosPedidoP" required>
               `;
 
           for (const periodo of data.periodos) {
@@ -1532,7 +1532,7 @@
                       <td>${pedido.descripcion}</td>
                       <td> <button class="btn btn-success" data-idSolicitud="${pedido.idSolicitud}" data-idPedido="${pedido.idPedido}"  data-numero="${pedido.numero}" 
                       data-idTipoDocumentoIdentidad="${pedido.idTipoDocumentoEnvio}" data-numeroDocumento="${pedido.numeroDocumentoEnvio}" 
-                      data-idAfiliadoPeriodo="${pedido.idAfiliadoPeriodo}" data-idSolicitudEstado="${pedido.idSolicitudEstado}"
+                      data-idAfiliadoPeriodo="${pedido.idAfiliadoPeriodo}"
                       data-idPedidoEstado="${pedido.idPedidoEstado}"
                       data-nombre="${pedido.nombresEnvio}" data-apellidos="${pedido.apellidosEnvio}"
                       data-numeroCanal="${pedido.canalNumeroPedido}"
@@ -1582,11 +1582,10 @@
           const idPedido = button.getAttribute("data-idPedido");
           const numero = button.getAttribute("data-numero");
           const apellidos = button.getAttribute("data-apellidos");
-          const idSolicitudEstado = button.getAttribute(
-            "data-idSolicitudEstado",
+          const idPedidoEstado = button.getAttribute(
+            "data-idPedidoEstado",
           );
           const numeroCanal = button.getAttribute("data-numeroCanal");
-          const idPedidoEstado = button.getAttribute("data-idPedidoEstado");
           const idTipoDocumentoIdentidad = button.getAttribute(
             "data-idTipoDocumentoIdentidad",
           );
@@ -1605,6 +1604,7 @@
 
           // Inserta los datos en los campos del modal
           document.getElementById("tipoNumero").value = "PEDIDO";
+          document.getElementById("estadosPedidoP").value = idPedidoEstado;
           document.getElementById("id").value = idPedido;
           document.getElementById("numDoc").value = numeroDocumento;
           document.getElementById("nombresP").value = nombre;
@@ -1662,7 +1662,7 @@
           }
 
           document.getElementById("estadosPedido").hidden = false;
-          document.getElementById("estadosPedido").value = idPedidoEstado;
+          document.getElementById("estadosPedidoP").value = idPedidoEstado;
         });
       });
 
@@ -1710,7 +1710,7 @@
           const idTipoDocumentoEnvio =
             document.getElementById("tipDocumento").value;
           const idAfiliadoPeriodo = document.getElementById("idPeriodos").value;
-          const idEstadoPedido = document.getElementById("estadosPedido").value;
+          const idEstadoPedido = document.getElementById("estadosPedidoP").value;
           const numeroCanal = document.getElementById("numeroCanal").value;
           const descripcionRangoHorario =
             document.getElementById("descripcionSlot").value;

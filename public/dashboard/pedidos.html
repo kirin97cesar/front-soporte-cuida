@@ -1351,8 +1351,8 @@
               `;
 
           let estadosPedidoTabla = `
-              <label class="form-label" for="estadosPedido">Estados</label>
-              <select class="form-select" id="estadosPedido" required>
+              <label class="form-label" for="estadosPedidoP">Estados</label>
+              <select class="form-select" id="estadosPedidoP" required>
               `;
 
           for (const periodo of data.periodos) {
@@ -1609,7 +1609,7 @@
           } else {
             document.getElementById("estadosP").hidden = true;
             document.getElementById("estadosPedido").hidden = false;
-            document.getElementById("estadosPedido").value = idPedidoEstado;
+            document.getElementById("estadosPedidoP").value = idPedidoEstado;
           }
         });
       });
@@ -1628,7 +1628,7 @@
           const idAfiliadoPeriodo = document.getElementById("idPeriodos").value;
           const idEstadoSolicitud =
             document.getElementById("estadosSolicitud").value;
-          const idEstadoPedido = document.getElementById("estadosPedido").value;
+          const idEstadoPedido = document.getElementById("estadosPedidoP").value;
           const numeroCanal = document.getElementById("numeroCanal").value;
 
           document.getElementById("actualizarPersona").innerHTML = `
